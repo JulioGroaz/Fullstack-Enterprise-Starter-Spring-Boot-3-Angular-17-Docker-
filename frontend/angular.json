@@ -1,0 +1,66 @@
+{
+  // English: Angular workspace configuration.
+  // Italiano: Configurazione workspace Angular.
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  // English: Root for new projects (unused in this single app repo).
+  // Italiano: Root per nuovi progetti (non usato in questa repo).
+  "newProjectRoot": "",
+  "projects": {
+    "frontend": {
+      // English: Application project definition.
+      // Italiano: Definizione progetto applicazione.
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          // English: Build configuration for the app.
+          // Italiano: Configurazione build per l'app.
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            // English: Output and entry points.
+            // Italiano: Output e entry point.
+            "outputPath": "dist/frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [],
+            "styles": ["src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            // English: Production build settings.
+            // Italiano: Impostazioni build produzione.
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractLicenses": true
+            }
+          }
+        },
+        "serve": {
+          // English: Development server configuration.
+          // Italiano: Configurazione server di sviluppo.
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "frontend:build"
+          },
+          "configurations": {
+            // English: Production server uses production build.
+            // Italiano: Server produzione usa build produzione.
+            "production": {
+              "buildTarget": "frontend:build:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  // English: Default project for CLI commands.
+  // Italiano: Progetto di default per i comandi CLI.
+  "defaultProject": "frontend"
+}

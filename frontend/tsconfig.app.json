@@ -1,0 +1,21 @@
+{
+  // English: TypeScript config for the application build.
+  // Italiano: Config TypeScript per la build dell'app.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // English: Output folder and type definitions.
+    // Italiano: Cartella output e definizioni di tipo.
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    // English: Main entry point.
+    // Italiano: Entry point principale.
+    "src/main.ts"
+  ],
+  "include": [
+    // English: Include type definition files.
+    // Italiano: Include i file di definizione tipo.
+    "src/**/*.d.ts"
+  ]
+}

@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    # English: In-memory H2 database for tests.
+    # Italiano: Database H2 in memoria per i test.
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      # English: Auto create and drop schema in tests.
+      # Italiano: Crea e distrugge lo schema nei test.
+      ddl-auto: create-drop
+    # English: Disable Open Session In View in tests.
+    # Italiano: Disabilita Open Session In View nei test.
+    open-in-view: false
+  flyway:
+    # English: Disable Flyway during tests.
+    # Italiano: Disabilita Flyway durante i test.
+    enabled: false
+
+app:
+  jwt:
+    # English: Test JWT secret.
+    # Italiano: Segreto JWT di test.
+    secret: testsecret
+    # English: Test token expiration in minutes.
+    # Italiano: Scadenza token di test in minuti.
+    expirationMinutes: 60
+  seed-admin:
+    # English: Disable seeding in tests.
+    # Italiano: Disabilita il seed nei test.
+    enabled: false

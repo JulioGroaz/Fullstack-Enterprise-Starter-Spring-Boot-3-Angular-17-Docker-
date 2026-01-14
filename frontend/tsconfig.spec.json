@@ -1,0 +1,18 @@
+{
+  // English: TypeScript config for unit tests.
+  // Italiano: Config TypeScript per i test unitari.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // English: Output folder and Jasmine types.
+    // Italiano: Cartella output e tipi Jasmine.
+    "outDir": "./out-tsc/spec",
+    "types": ["jasmine"]
+  },
+  "files": [],
+  "include": [
+    // English: Include test and type definition files.
+    // Italiano: Include file di test e definizione tipo.
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

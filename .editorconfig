@@ -1,0 +1,17 @@
+root = true
+# English: Root editorconfig marker for this repository.
+# Italiano: Marcatore di root editorconfig per questo repository.
+
+[*]
+# English: Base formatting rules for all files.
+# Italiano: Regole base di formattazione per tutti i file.
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+[*.java]
+# English: Java-specific indentation settings.
+# Italiano: Impostazioni di indentazione specifiche per Java.
+indent_size = 4

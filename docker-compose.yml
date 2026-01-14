@@ -1,0 +1,68 @@
+version: "3.9"
+# English: Local development stack for database, backend, and frontend.
+# Italiano: Stack di sviluppo locale per database, backend e frontend.
+services:
+  mysql:
+    # English: MySQL database container.
+    # Italiano: Container database MySQL.
+    image: mysql:8.0
+    environment:
+      # English: Database name and user credentials.
+      # Italiano: Nome database e credenziali utente.
+      MYSQL_DATABASE: starterdb
+      MYSQL_USER: starter
+      MYSQL_PASSWORD: starter
+      MYSQL_ROOT_PASSWORD: starterroot
+    ports:
+      # English: Expose MySQL to host.
+      # Italiano: Espone MySQL verso host.
+      - "3306:3306"
+    healthcheck:
+      # English: Wait until MySQL is ready.
+      # Italiano: Attende che MySQL sia pronto.
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    # English: Spring Boot API container.
+    # Italiano: Container API Spring Boot.
+    build:
+      context: ./backend
+    environment:
+      # English: Database connection and app secrets.
+      # Italiano: Connessione database e segreti applicazione.
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: starterdb
+      DB_USER: starter
+      DB_PASSWORD: starter
+      JWT_SECRET: devsecretchangeitdevsecretchangeit
+      JWT_EXP_MINUTES: 60
+      SEED_ADMIN: "true"
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin1234
+    ports:
+      # English: Expose backend API.
+      # Italiano: Espone la API backend.
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    # English: Angular dev server container.
+    # Italiano: Container server di sviluppo Angular.
+    build:
+      context: ./frontend
+    environment:
+      # English: Runtime environment hints.
+      # Italiano: Indicazioni ambiente di runtime.
+      NODE_ENV: development
+    ports:
+      # English: Expose frontend UI.
+      # Italiano: Espone la UI frontend.
+      - "4200:4200"
+    depends_on:
+      - backend

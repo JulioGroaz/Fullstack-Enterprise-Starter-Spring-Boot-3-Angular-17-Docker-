@@ -1,0 +1,26 @@
+{
+  // English: Base TypeScript compiler settings.
+  // Italiano: Impostazioni base del compilatore TypeScript.
+  "compileOnSave": false,
+  "compilerOptions": {
+    // English: Output and module settings.
+    // Italiano: Impostazioni output e moduli.
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "DOM"]
+  }
+}

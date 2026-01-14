@@ -1,0 +1,19 @@
+# English: Maven build outputs.
+# Italiano: Output di build Maven.
+**/target/
+**/pom.xml.versionsBackup
+
+# English: Node.js dependencies and build outputs.
+# Italiano: Dipendenze e output di build Node.js.
+**/node_modules/
+**/dist/
+
+# English: IDE workspace files.
+# Italiano: File di workspace IDE.
+**/.idea/
+**/.vscode/
+
+# English: Operating system artifacts.
+# Italiano: Artefatti del sistema operativo.
+.DS_Store
+Thumbs.db

@@ -1,0 +1,48 @@
+server:
+  # English: HTTP port for the backend API.
+  # Italiano: Porta HTTP per la API backend.
+  port: 8080
+
+spring:
+  datasource:
+    # English: JDBC URL built from environment variables.
+    # Italiano: URL JDBC costruito da variabili ambiente.
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:starterdb}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    # English: Database credentials.
+    # Italiano: Credenziali database.
+    username: ${DB_USER:starter}
+    password: ${DB_PASSWORD:starter}
+  jpa:
+    hibernate:
+      # English: Validate schema against entities.
+      # Italiano: Valida lo schema rispetto alle entita.
+      ddl-auto: validate
+    # English: Disable Open Session In View.
+    # Italiano: Disabilita Open Session In View.
+    open-in-view: false
+  flyway:
+    # English: Enable Flyway migrations.
+    # Italiano: Abilita migrazioni Flyway.
+    enabled: true
+    # English: Location of migration scripts.
+    # Italiano: Posizione degli script di migrazione.
+    locations: classpath:db/migration
+
+app:
+  jwt:
+    # English: Secret for signing JWT tokens (required).
+    # Italiano: Segreto per firmare i token JWT (obbligatorio).
+    secret: ${JWT_SECRET:}
+    # English: Token expiration in minutes.
+    # Italiano: Scadenza token in minuti.
+    expirationMinutes: ${JWT_EXP_MINUTES:60}
+  seed-admin:
+    # English: Enable admin seeding on startup.
+    # Italiano: Abilita il seed admin all'avvio.
+    enabled: ${SEED_ADMIN:false}
+    # English: Admin email for seed user.
+    # Italiano: Email admin per utente seed.
+    email: ${ADMIN_EMAIL:}
+    # English: Admin password for seed user.
+    # Italiano: Password admin per utente seed.
+    password: ${ADMIN_PASSWORD:}
