@@ -1,10 +1,10 @@
 // English: Route configuration for public and protected areas.
 // Italiano: Configurazione route per aree pubbliche e protette.
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login.component';
-import { ProfileComponent } from './components/profile.component';
-import { AdminUsersComponent } from './components/admin-users.component';
-import { ShellComponent } from './components/shell.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { ShellComponent } from './components/shell/shell.component';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 

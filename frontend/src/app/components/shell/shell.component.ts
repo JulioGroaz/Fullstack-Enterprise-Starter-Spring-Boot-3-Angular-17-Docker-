@@ -3,7 +3,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 /**
  * English: Protected shell wrapper for profile and admin pages.
@@ -13,27 +13,12 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-shell',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
-  template: `
-    <header class="shell-header">
-      <div>
-        <strong>Fullstack Starter</strong>
-        <div class="helper">Secure workspace</div>
-      </div>
-      <nav class="nav">
-        <a routerLink="/profile">Profile</a>
-        <a routerLink="/admin/users">Admin Users</a>
-      </nav>
-      <div class="actions">
-        <span class="tag" *ngIf="auth.getUser() as user">{{ user.email }}</span>
-        <button class="secondary" (click)="logout()">Logout</button>
-      </div>
-    </header>
-    <main class="container">
-      <router-outlet></router-outlet>
-    </main>
-  `
+  templateUrl: './shell.component.html',
+  styleUrls: ['./shell.component.css']
 })
 export class ShellComponent {
+  // English: Injected services for auth and navigation.
+  // Italiano: Servizi iniettati per auth e navigazione.
   constructor(public auth: AuthService, private router: Router) {}
 
   /**

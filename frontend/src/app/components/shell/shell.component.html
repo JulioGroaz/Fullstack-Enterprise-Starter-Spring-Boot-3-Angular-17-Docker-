@@ -1,0 +1,30 @@
+<!-- English: Shell layout with navigation and outlet. -->
+<!-- Italiano: Layout shell con navigazione e outlet. -->
+<header class="shell-header">
+  <!-- English: Brand block. -->
+  <!-- Italiano: Blocco brand. -->
+  <div>
+    <strong>Fullstack Starter</strong>
+    <div class="helper">Secure workspace</div>
+  </div>
+
+  <!-- English: Primary navigation links. -->
+  <!-- Italiano: Link di navigazione principali. -->
+  <nav class="nav">
+    <a routerLink="/profile">Profile</a>
+    <a routerLink="/admin/users">Admin Users</a>
+  </nav>
+
+  <!-- English: User actions. -->
+  <!-- Italiano: Azioni utente. -->
+  <div class="actions">
+    <span class="tag" *ngIf="auth.getUser() as user">{{ user.email }}</span>
+    <button class="secondary" (click)="logout()">Logout</button>
+  </div>
+</header>
+
+<!-- English: Routed content area. -->
+<!-- Italiano: Area contenuto con routing. -->
+<main class="container">
+  <router-outlet></router-outlet>
+</main>

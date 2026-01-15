@@ -2,8 +2,8 @@
 // Italiano: Componente gestione utenti admin.
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../models';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models';
 
 /**
  * English: Admin page to list and enable/disable users.
@@ -13,41 +13,17 @@ import { User } from '../models';
   selector: 'app-admin-users',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="card">
-      <h2>Admin users</h2>
-      <p class="helper">Manage user access and status.</p>
-      <div *ngIf="error" class="error">{{ error }}</div>
-      <table class="table" *ngIf="users.length">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Roles</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{ user.email }}</td>
-            <td>{{ user.roles.join(', ') }}</td>
-            <td>{{ user.enabled ? 'Enabled' : 'Disabled' }}</td>
-            <td>
-              <button class="secondary" (click)="toggleUser(user)">
-                {{ user.enabled ? 'Disable' : 'Enable' }}
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p *ngIf="!users.length" class="helper">No users found.</p>
-    </div>
-  `
+  templateUrl: './admin-users.component.html',
+  styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent implements OnInit {
+  // English: UI state for the user list and errors.
+  // Italiano: Stato UI per lista utenti ed errori.
   users: User[] = [];
   error = '';
 
+  // English: Injected service for user management APIs.
+  // Italiano: Servizio iniettato per API gestione utenti.
   constructor(private userService: UserService) {}
 
   /**

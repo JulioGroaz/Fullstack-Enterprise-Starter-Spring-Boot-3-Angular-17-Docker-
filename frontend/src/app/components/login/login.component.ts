@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 /**
  * English: Login page for user authentication.
@@ -14,31 +14,19 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <div class="card auth-card">
-      <h1>Welcome back</h1>
-      <p class="helper">Sign in to reach your workspace.</p>
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <div class="field">
-          <label>Email</label>
-          <input type="email" name="email" [(ngModel)]="email" required />
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" name="password" [(ngModel)]="password" required />
-        </div>
-        <button type="submit" [disabled]="loginForm.invalid || loading">Sign in</button>
-      </form>
-      <div class="error" *ngIf="error">{{ error }}</div>
-    </div>
-  `
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  // English: Local form state.
+  // Italiano: Stato locale del form.
   email = '';
   password = '';
   error = '';
   loading = false;
 
+  // English: Injected services for auth and navigation.
+  // Italiano: Servizi iniettati per auth e navigazione.
   constructor(private authService: AuthService, private router: Router) {}
 
   /**

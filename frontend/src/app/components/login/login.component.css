@@ -1,0 +1,29 @@
+/* English: Styles scoped to the login component. */
+/* Italiano: Stili specifici per il componente login. */
+.auth-card {
+  max-width: 420px;
+  margin: 60px auto;
+  display: grid;
+  gap: 16px;
+}
+
+/* English: Login card title spacing. */
+/* Italiano: Spaziatura titolo card login. */
+.auth-card h1 {
+  margin: 0;
+}
+
+/* English: Field group layout. */
+/* Italiano: Layout gruppo campo. */
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+/* English: Mobile adjustments for the login layout. */
+/* Italiano: Adattamenti mobile per il layout login. */
+@media (max-width: 720px) {
+  .auth-card {
+    margin: 32px 16px;
+  }
+}

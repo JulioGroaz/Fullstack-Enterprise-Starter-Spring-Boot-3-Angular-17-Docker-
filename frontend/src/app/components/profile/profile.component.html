@@ -1,0 +1,15 @@
+<!-- English: Profile card layout. -->
+<!-- Italiano: Layout card profilo. -->
+<div class="card">
+  <!-- English: Profile content or loading state. -->
+  <!-- Italiano: Contenuto profilo o stato di caricamento. -->
+  <h2>Your profile</h2>
+  <div *ngIf="user; else loading">
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
+    <p><strong>Status:</strong> {{ user.enabled ? 'Enabled' : 'Disabled' }}</p>
+  </div>
+  <ng-template #loading>
+    <p class="helper">Loading profile...</p>
+  </ng-template>
+</div>

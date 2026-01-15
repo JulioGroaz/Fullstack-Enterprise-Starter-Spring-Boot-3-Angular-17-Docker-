@@ -81,14 +81,6 @@ input {
   font-size: 14px;
 }
 
-/* English: Page content container. */
-/* Italiano: Contenitore del contenuto pagina. */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 28px 20px 60px;
-}
-
 /* English: Card surface styling. */
 /* Italiano: Stile superficie card. */
 .card {
@@ -97,28 +89,6 @@ input {
   border-radius: 20px;
   padding: 24px;
   box-shadow: var(--shadow);
-}
-
-/* English: Layout for the login card. */
-/* Italiano: Layout per la card di login. */
-.auth-card {
-  max-width: 420px;
-  margin: 60px auto;
-  display: grid;
-  gap: 16px;
-}
-
-/* English: Login card title styling. */
-/* Italiano: Stile titolo card di login. */
-.auth-card h1 {
-  margin: 0;
-}
-
-/* English: Field group layout. */
-/* Italiano: Layout gruppo campo. */
-.field {
-  display: grid;
-  gap: 6px;
 }
 
 /* English: Helper text styling. */
@@ -133,86 +103,4 @@ input {
 .error {
   color: #b42318;
   font-size: 13px;
-}
-
-/* English: Shell header bar styling. */
-/* Italiano: Stile barra header shell. */
-.shell-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 22px;
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-/* English: Navigation link container. */
-/* Italiano: Contenitore link di navigazione. */
-.nav {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-/* English: Small status pill styling. */
-/* Italiano: Stile pillola di stato. */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  background: #f0f7f8;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--accent-strong);
-}
-
-/* English: Table layout for admin users. */
-/* Italiano: Layout tabella per utenti admin. */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-}
-
-.table th,
-.table td {
-  /* English: Table cell spacing and borders. */
-  /* Italiano: Spaziatura e bordi delle celle tabella. */
-  text-align: left;
-  padding: 10px 8px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-}
-
-/* English: Table header styling. */
-/* Italiano: Stile intestazione tabella. */
-.table th {
-  color: var(--muted);
-  font-weight: 600;
-}
-
-/* English: Action button group layout. */
-/* Italiano: Layout gruppo bottoni azione. */
-.actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* English: Mobile responsiveness adjustments. */
-/* Italiano: Adattamenti responsive per mobile. */
-@media (max-width: 720px) {
-  .shell-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .auth-card {
-    margin: 32px 16px;
-  }
 }

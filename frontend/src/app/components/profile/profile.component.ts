@@ -2,8 +2,8 @@
 // Italiano: Componente pagina profilo per l'utente corrente.
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../models';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models';
 
 /**
  * English: Shows the authenticated user's profile data.
@@ -13,23 +13,16 @@ import { User } from '../models';
   selector: 'app-profile',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="card">
-      <h2>Your profile</h2>
-      <div *ngIf="user; else loading">
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
-        <p><strong>Status:</strong> {{ user.enabled ? 'Enabled' : 'Disabled' }}</p>
-      </div>
-      <ng-template #loading>
-        <p class="helper">Loading profile...</p>
-      </ng-template>
-    </div>
-  `
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  // English: Loaded profile data for the current user.
+  // Italiano: Dati profilo caricati per l'utente corrente.
   user: User | null = null;
 
+  // English: Injected service for profile APIs.
+  // Italiano: Servizio iniettato per API profilo.
   constructor(private userService: UserService) {}
 
   /**

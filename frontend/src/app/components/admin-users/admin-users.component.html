@@ -1,0 +1,41 @@
+<!-- English: Admin users panel layout. -->
+<!-- Italiano: Layout pannello utenti admin. -->
+<div class="card">
+  <!-- English: Title and helper text. -->
+  <!-- Italiano: Titolo e testo di supporto. -->
+  <h2>Admin users</h2>
+  <p class="helper">Manage user access and status.</p>
+
+  <!-- English: Error feedback. -->
+  <!-- Italiano: Feedback errore. -->
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- English: Users table. -->
+  <!-- Italiano: Tabella utenti. -->
+  <table class="table" *ngIf="users.length">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles.join(', ') }}</td>
+        <td>{{ user.enabled ? 'Enabled' : 'Disabled' }}</td>
+        <td>
+          <button class="secondary" (click)="toggleUser(user)">
+            {{ user.enabled ? 'Disable' : 'Enable' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- English: Empty state message. -->
+  <!-- Italiano: Messaggio stato vuoto. -->
+  <p *ngIf="!users.length" class="helper">No users found.</p>
+</div>
