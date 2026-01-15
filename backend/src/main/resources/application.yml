@@ -5,13 +5,13 @@ server:
 
 spring:
   datasource:
-    # English: JDBC URL built from environment variables.
-    # Italiano: URL JDBC costruito da variabili ambiente.
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:starterdb}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    # English: JDBC URL for local MySQL.
+    # Italiano: URL JDBC per MySQL locale.
+    url: jdbc:mysql://127.0.0.1:3306/starterdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     # English: Database credentials.
     # Italiano: Credenziali database.
-    username: ${DB_USER:starter}
-    password: ${DB_PASSWORD:starter}
+    username: starter
+    password: starter
   jpa:
     hibernate:
       # English: Validate schema against entities.
@@ -32,7 +32,7 @@ app:
   jwt:
     # English: Secret for signing JWT tokens (required).
     # Italiano: Segreto per firmare i token JWT (obbligatorio).
-    secret: ${JWT_SECRET:}
+    secret: ${JWT_SECRET:devsecretchangeitdevsecretchangeit}
     # English: Token expiration in minutes.
     # Italiano: Scadenza token in minuti.
     expirationMinutes: ${JWT_EXP_MINUTES:60}

@@ -24,7 +24,7 @@
             // Italiano: Output e entry point.
             "outputPath": "dist/frontend",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [],
@@ -60,7 +60,7 @@
       }
     }
   },
-  // English: Default project for CLI commands.
-  // Italiano: Progetto di default per i comandi CLI.
-  "defaultProject": "frontend"
+  "cli": {
+    "analytics": "9361bf89-1e22-4992-b638-ea95bf7c192a"
+  }
 }
