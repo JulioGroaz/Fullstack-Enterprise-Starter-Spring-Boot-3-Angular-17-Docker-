@@ -83,4 +83,12 @@ export class UserTableComponent {
   requestToggle(user: User): void {
     this.toggleStatus.emit({ user, nextEnabled: !user.enabled });
   }
+
+  // Verifica se l'utente ha solo il ruolo admin.
+  isAdminOnly(user: User): boolean {
+    const roles = user.roles ?? [];
+    const hasAdmin = roles.some(role => role.toUpperCase().includes('ADMIN'));
+    const hasNonAdmin = roles.some(role => !role.toUpperCase().includes('ADMIN'));
+    return hasAdmin && !hasNonAdmin;
+  }
 }

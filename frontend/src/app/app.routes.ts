@@ -3,6 +3,7 @@
 // Scelte UI/UX: separazione chiara tra login e area protetta.
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UsersPageComponent } from './features/users/pages/users-page/users-page.component';
 import { ShellComponent } from './components/shell/shell.component';
@@ -12,6 +13,7 @@ import { roleGuard } from './guards/role.guard';
 // Definizione delle route e guardie applicate.
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: '',
     component: ShellComponent,

@@ -1,0 +1,50 @@
+<!-- English: Registration layout with card and compact form. -->
+<!-- Italiano: layout registrazione con card e form compatto. -->
+<!-- English: Sections include title, credential form, support link, error feedback. -->
+<!-- Italiano: Sezioni: titolo, form credenziali, link di supporto, feedback errore. -->
+<!-- English: UI/UX choice: centered card to focus on registration. -->
+<!-- Italiano: Scelte UI/UX: card centrata per concentrarsi sulla registrazione. -->
+<div class="auth-page">
+  <app-card class="register-card">
+    <!-- English: Title and support copy. -->
+    <!-- Italiano: Titolo e copy di supporto. -->
+    <div class="register-header">
+      <h1>Crea account</h1>
+      <p class="helper">Registrati come utente standard.</p>
+    </div>
+
+    <!-- English: Credentials form. -->
+    <!-- Italiano: Form credenziali. -->
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <ui-input
+        label="Email"
+        type="email"
+        name="email"
+        placeholder="nome@azienda.it"
+        [required]="true"
+        autocomplete="email"
+        [(ngModel)]="email"
+      ></ui-input>
+      <ui-input
+        label="Password"
+        type="password"
+        name="password"
+        placeholder="Scegli una password"
+        [required]="true"
+        autocomplete="new-password"
+        [(ngModel)]="password"
+      ></ui-input>
+      <ui-button type="submit" [loading]="loading" [disabled]="registerForm.invalid || loading">
+        Registrati
+      </ui-button>
+    </form>
+
+    <!-- English: Error feedback on failed registration. -->
+    <!-- Italiano: Feedback errore in caso di registrazione fallita. -->
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <div class="register-footer">
+      <span class="helper">Hai gia un account?</span>
+      <a routerLink="/login">Accedi</a>
+    </div>
+  </app-card>
+</div>

@@ -38,9 +38,17 @@
           <div class="row-actions">
             <!-- Azioni view/edit (UI pronta, logica nel parent). -->
             <ui-button variant="ghost" size="sm" (click)="viewUser.emit(user)">Dettagli</ui-button>
-            <ui-button variant="secondary" size="sm" (click)="editUser.emit(user)">Modifica</ui-button>
+            <ui-button
+              *ngIf="!isAdminOnly(user)"
+              variant="secondary"
+              size="sm"
+              (click)="editUser.emit(user)"
+            >
+              Modifica
+            </ui-button>
             <!-- Toggle con conferma gestita dal parent. -->
             <ui-toggle
+              *ngIf="!isAdminOnly(user)"
               [checked]="user.enabled"
               [ariaLabel]="user.enabled ? 'Disabilita utente' : 'Abilita utente'"
               (changed)="requestToggle(user)"

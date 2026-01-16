@@ -31,6 +31,18 @@ export class AuthService {
   }
 
   /**
+   * English: Calls register endpoint and stores session.
+   * Italiano: Chiama endpoint registrazione e salva la sessione.
+   */
+  register(email: string, password: string): Observable<User> {
+    return this.http.post<AuthResponse>(`${API_BASE_URL}/auth/register`, { email, password })
+      .pipe(
+        tap(response => this.setSession(response)),
+        map(response => response.user)
+      );
+  }
+
+  /**
    * English: Clears local session and user data.
    * Italiano: Pulisce la sessione locale e i dati utente.
    */

@@ -1,38 +1,51 @@
-<!-- Scopo: layout login con card e form compatto. -->
-<!-- Sezioni: titolo, form credenziali, feedback errore. -->
-<!-- Scelte UI/UX: card centrata per focalizzare l'attenzione. -->
-<app-card class="login-card">
-  <!-- Titolo e copy di supporto. -->
-  <div class="login-header">
-    <h1>Ben tornato</h1>
-    <p class="helper">Accedi per gestire il CRM.</p>
-  </div>
+<!-- English: Login layout with card and compact form. -->
+<!-- Italiano: layout login con card e form compatto. -->
+<!-- English: Sections include title, credential form, error feedback. -->
+<!-- Italiano: Sezioni: titolo, form credenziali, feedback errore. -->
+<!-- English: UI/UX choice: centered card to focus attention. -->
+<!-- Italiano: Scelte UI/UX: card centrata per focalizzare l'attenzione. -->
+<div class="auth-page">
+  <app-card class="login-card">
+    <!-- English: Title and support copy. -->
+    <!-- Italiano: Titolo e copy di supporto. -->
+    <div class="login-header">
+      <h1>Ben tornato</h1>
+      <p class="helper">Accedi per gestire il CRM.</p>
+    </div>
 
-  <!-- Form credenziali. -->
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <ui-input
-      label="Email"
-      type="email"
-      name="email"
-      placeholder="nome@azienda.it"
-      [required]="true"
-      autocomplete="email"
-      [(ngModel)]="email"
-    ></ui-input>
-    <ui-input
-      label="Password"
-      type="password"
-      name="password"
-      placeholder="Inserisci la password"
-      [required]="true"
-      autocomplete="current-password"
-      [(ngModel)]="password"
-    ></ui-input>
-    <ui-button type="submit" [loading]="loading" [disabled]="loginForm.invalid || loading">
-      Accedi
-    </ui-button>
-  </form>
+    <!-- English: Credentials form. -->
+    <!-- Italiano: Form credenziali. -->
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <ui-input
+        label="Email"
+        type="email"
+        name="email"
+        placeholder="nome@azienda.it"
+        [required]="true"
+        autocomplete="email"
+        [(ngModel)]="email"
+      ></ui-input>
+      <ui-input
+        label="Password"
+        type="password"
+        name="password"
+        placeholder="Inserisci la password"
+        [required]="true"
+        autocomplete="current-password"
+        [(ngModel)]="password"
+      ></ui-input>
+      <ui-button type="submit" [loading]="loading" [disabled]="loginForm.invalid || loading">
+        Accedi
+      </ui-button>
+    </form>
 
-  <!-- Feedback errore in caso di login fallito. -->
-  <p class="error" *ngIf="error">{{ error }}</p>
-</app-card>
+    <div class="login-footer">
+      <span class="helper">Non hai un account?</span>
+      <a routerLink="/register">Registrati</a>
+    </div>
+
+    <!-- English: Error feedback on failed login. -->
+    <!-- Italiano: Feedback errore in caso di login fallito. -->
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </app-card>
+</div>
