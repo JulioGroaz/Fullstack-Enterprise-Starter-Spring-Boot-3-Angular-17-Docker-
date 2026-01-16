@@ -1,20 +1,25 @@
-<!-- Scopo: layout dei filtri per la lista utenti. -->
-<!-- Sezioni: ricerca, select di stato/ruolo/company, reset. -->
-<!-- Scelte UI/UX: filtri allineati per ridurre click. -->
+<!-- English: Filters layout for the users list. -->
+<!-- Italiano: layout dei filtri per la lista utenti. -->
+<!-- English: Sections include search, status/role/company selects, reset. -->
+<!-- Italiano: Sezioni: ricerca, select di stato/ruolo/company, reset. -->
+<!-- English: UI/UX choice: aligned filters to reduce clicks. -->
+<!-- Italiano: Scelte UI/UX: filtri allineati per ridurre click. -->
 <div class="filters">
-  <!-- Ricerca testuale per email o parole chiave. -->
+  <!-- English: Text search for email or keywords. -->
+  <!-- Italiano: Ricerca testuale per email o parole chiave. -->
   <ui-input
-    label="Cerca utenti"
-    placeholder="Email, ruolo o dominio"
+    label="Search users"
+    placeholder="Email, role, or domain"
     type="search"
     name="search"
     [(ngModel)]="localFilters.search"
     (ngModelChange)="emitFilters()"
   ></ui-input>
 
-  <!-- Filtri a select per stato/ruolo/company. -->
+  <!-- English: Select filters for status/role/company. -->
+  <!-- Italiano: Filtri a select per stato/ruolo/company. -->
   <ui-select
-    label="Stato"
+    label="Status"
     name="status"
     [options]="statusOptions"
     [(ngModel)]="localFilters.status"
@@ -22,7 +27,7 @@
   ></ui-select>
 
   <ui-select
-    label="Ruolo"
+    label="Role"
     name="role"
     [options]="roleOptions"
     [(ngModel)]="localFilters.role"
@@ -30,15 +35,16 @@
   ></ui-select>
 
   <ui-select
-    label="Azienda"
+    label="Company"
     name="company"
     [options]="companyOptions"
     [(ngModel)]="localFilters.company"
     (ngModelChange)="emitFilters()"
   ></ui-select>
 
-  <!-- CTA per ripulire rapidamente i filtri. -->
+  <!-- English: CTA to quickly clear filters. -->
+  <!-- Italiano: CTA per ripulire rapidamente i filtri. -->
   <div class="filters-actions">
-    <ui-button variant="ghost" size="sm" (click)="resetFilters()">Reset filtri</ui-button>
+    <ui-button variant="ghost" size="sm" (click)="resetFilters()">Reset filters</ui-button>
   </div>
 </div>

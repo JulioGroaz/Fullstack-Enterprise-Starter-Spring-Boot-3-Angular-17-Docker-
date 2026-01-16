@@ -1,66 +1,72 @@
-<!-- Scopo: form utente con sezioni per anagrafica, accesso e note. -->
-<!-- Sezioni: griglia a due colonne e footer con CTA. -->
-<!-- Scelte UI/UX: sezioni separate per ridurre errori di compilazione. -->
+<!-- English: User form with sections for profile, access, and notes. -->
+<!-- Italiano: form utente con sezioni per anagrafica, accesso e note. -->
+<!-- English: Sections include two-column grid and CTA footer. -->
+<!-- Italiano: Sezioni: griglia a due colonne e footer con CTA. -->
+<!-- English: UI/UX choice: separate sections to reduce input errors. -->
+<!-- Italiano: Scelte UI/UX: sezioni separate per ridurre errori di compilazione. -->
 <form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-  <!-- Sezione anagrafica. -->
+  <!-- English: Profile section. -->
+  <!-- Italiano: Sezione anagrafica. -->
   <div class="form-section">
-    <h4>Anagrafica</h4>
+    <h4>Profile details</h4>
     <div class="form-grid">
       <ui-input
         label="Email"
         name="email"
         type="email"
-        placeholder="nome@azienda.it"
+        placeholder="name@company.com"
         [(ngModel)]="formData.email"
         [readonly]="readOnly"
         [required]="true"
-        [error]="submitted && !formData.email ? 'Email obbligatoria' : ''"
+        [error]="submitted && !formData.email ? 'Email is required' : ''"
       ></ui-input>
       <ui-input
-        label="Azienda"
+        label="Company"
         name="company"
-        placeholder="Dominio email"
+        placeholder="Email domain"
         [(ngModel)]="formData.company"
         [readonly]="true"
-        helper="Derivato dal dominio della mail"
+        helper="Derived from the email domain"
       ></ui-input>
     </div>
   </div>
 
-  <!-- Sezione ruolo e accesso. -->
+  <!-- English: Role and access section. -->
+  <!-- Italiano: Sezione ruolo e accesso. -->
   <div class="form-section">
-    <h4>Ruolo e accesso</h4>
+    <h4>Role and access</h4>
     <div class="form-grid">
       <ui-select
-        label="Ruolo"
+        label="Role"
         name="role"
-        placeholder="Seleziona ruolo"
+        placeholder="Select role"
         [options]="resolvedRoleOptions"
         [(ngModel)]="formData.role"
         [required]="true"
         [disabled]="readOnly"
-        [error]="submitted && !formData.role ? 'Ruolo obbligatorio' : ''"
+        [error]="submitted && !formData.role ? 'Role is required' : ''"
       ></ui-select>
       <div class="toggle-field">
-        <label class="toggle-label">Stato</label>
+        <label class="toggle-label">Status</label>
         <ui-toggle
           [checked]="formData.enabled"
           [disabled]="readOnly"
-          ariaLabel="Toggle stato utente"
+          ariaLabel="Toggle user status"
           (changed)="onToggle($event)"
         ></ui-toggle>
-        <span class="toggle-helper">{{ formData.enabled ? 'Attivo' : 'Disabilitato' }}</span>
+        <span class="toggle-helper">{{ formData.enabled ? 'Active' : 'Disabled' }}</span>
       </div>
     </div>
   </div>
 
-  <!-- Sezione note interne. -->
+  <!-- English: Internal notes section. -->
+  <!-- Italiano: Sezione note interne. -->
   <div class="form-section">
-    <h4>Note interne</h4>
+    <h4>Internal notes</h4>
     <ui-input
-      label="Note"
+      label="Notes"
       name="note"
-      placeholder="Aggiungi un contesto utile per il team"
+      placeholder="Add helpful context for the team"
       [multiline]="true"
       [rows]="4"
       [(ngModel)]="formData.note"
@@ -68,8 +74,9 @@
     ></ui-input>
   </div>
 
-  <!-- CTA solo se non in sola lettura. -->
+  <!-- English: CTA only when not read-only. -->
+  <!-- Italiano: CTA solo se non in sola lettura. -->
   <div class="form-actions" *ngIf="!readOnly">
-    <ui-button type="submit" [disabled]="userForm.invalid">Salva</ui-button>
+    <ui-button type="submit" [disabled]="userForm.invalid">Save</ui-button>
   </div>
 </form>

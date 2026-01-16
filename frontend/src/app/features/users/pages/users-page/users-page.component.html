@@ -1,15 +1,20 @@
-<!-- Scopo: pagina gestione utenti con filtri, tabella e modali. -->
-<!-- Sezioni: header, filtri, tabella, stati e modali. -->
-<!-- Scelte UI/UX: card separate per isolare filtri e risultati. -->
+<!-- English: User management page with filters, table, and modals. -->
+<!-- Italiano: pagina gestione utenti con filtri, tabella e modali. -->
+<!-- English: Sections include header, filters, table, states, and modals. -->
+<!-- Italiano: Sezioni: header, filtri, tabella, stati e modali. -->
+<!-- English: UI/UX choice: separate cards to isolate filters and results. -->
+<!-- Italiano: Scelte UI/UX: card separate per isolare filtri e risultati. -->
 <section class="users-page">
-  <!-- Header pagina con azioni rapide. -->
-  <page-header title="Gestione utenti" subtitle="Controlla accessi, ruoli e stato degli utenti.">
+  <!-- English: Page header with quick actions. -->
+  <!-- Italiano: Header pagina con azioni rapide. -->
+  <page-header title="User management" subtitle="Manage access, roles, and user status.">
     <div actions>
-      <ui-button variant="secondary" (click)="loadUsers()">Aggiorna</ui-button>
+      <ui-button variant="secondary" (click)="loadUsers()">Refresh</ui-button>
     </div>
   </page-header>
 
-  <!-- Card filtri di ricerca. -->
+  <!-- English: Search filters card. -->
+  <!-- Italiano: Card filtri di ricerca. -->
   <app-card>
     <user-filters
       [filters]="filters"
@@ -19,25 +24,28 @@
     ></user-filters>
   </app-card>
 
-  <!-- Card tabella utenti con stati. -->
+  <!-- English: Users table card with status. -->
+  <!-- Italiano: Card tabella utenti con stati. -->
   <app-card class="table-card">
     <div class="table-header">
       <div>
-        <h3>Utenti</h3>
-        <p class="helper">{{ filteredUsers.length }} risultati</p>
+        <h3>Users</h3>
+        <p class="helper">{{ filteredUsers.length }} results</p>
       </div>
     </div>
 
-    <!-- Stato errore. -->
+    <!-- English: Error state. -->
+    <!-- Italiano: Stato errore. -->
     <empty-state
       *ngIf="error"
-      title="Errore nel caricamento"
+      title="Failed to load"
       [description]="error"
     >
-      <ui-button variant="secondary" (click)="loadUsers()">Riprova</ui-button>
+      <ui-button variant="secondary" (click)="loadUsers()">Retry</ui-button>
     </empty-state>
 
-    <!-- Tabella utenti con azioni. -->
+    <!-- English: Users table with actions. -->
+    <!-- Italiano: Tabella utenti con azioni. -->
     <user-table
       *ngIf="!error && (loading || filteredUsers.length)"
       [users]="filteredUsers"
@@ -47,39 +55,42 @@
       (editUser)="openDetail($event, 'edit')"
     ></user-table>
 
-    <!-- Stato vuoto per filtri. -->
+    <!-- English: Empty state for filters. -->
+    <!-- Italiano: Stato vuoto per filtri. -->
     <empty-state
       *ngIf="!loading && !error && !filteredUsers.length"
-      title="Nessun utente trovato"
-      description="Prova a modificare i filtri o la ricerca."
+      title="No users found"
+      description="Try adjusting the filters or search."
     >
       <ui-button variant="ghost" (click)="resetFilters()">
-        Reset filtri
+        Reset filters
       </ui-button>
     </empty-state>
   </app-card>
 
-  <!-- Modale di conferma per abilita/disabilita. -->
+  <!-- English: Confirmation modal for enable/disable. -->
+  <!-- Italiano: Modale di conferma per abilita/disabilita. -->
   <ui-modal
     [open]="confirmOpen"
-    [title]="pendingToggle?.nextEnabled ? 'Abilita utente' : 'Disabilita utente'"
-    [description]="pendingToggle?.nextEnabled ? 'L\'utente riavra accesso al CRM.' : 'L\'utente non potra piu accedere al CRM.'"
-    [confirmLabel]="pendingToggle?.nextEnabled ? 'Abilita' : 'Disabilita'"
+    [title]="pendingToggle?.nextEnabled ? 'Enable user' : 'Disable user'"
+    [description]="pendingToggle?.nextEnabled ? 'The user will regain access to the CRM.' : 'The user will no longer be able to access the CRM.'"
+    [confirmLabel]="pendingToggle?.nextEnabled ? 'Enable' : 'Disable'"
     [confirmVariant]="pendingToggle?.nextEnabled ? 'primary' : 'danger'"
     (confirm)="confirmToggle()"
     (cancel)="cancelToggle()"
   >
     <p class="modal-text" *ngIf="pendingToggle?.user">
-      Confermi l'operazione per <strong>{{ pendingToggle?.user?.email }}</strong>?
+      Confirm the action for <strong>{{ pendingToggle?.user?.email }}</strong>?
     </p>
   </ui-modal>
 
-  <!-- Modale dettaglio utente (view/edit). -->
+  <!-- English: User detail modal (view/edit). -->
+  <!-- Italiano: Modale dettaglio utente (view/edit). -->
   <ui-modal
     [open]="detailOpen"
-    [title]="detailMode === 'edit' ? 'Modifica utente' : 'Dettaglio utente'"
-    [description]="detailMode === 'edit' ? 'Modifica disponibile in versione successiva.' : 'Informazioni principali e accessi.'"
-    confirmLabel="Chiudi"
+    [title]="detailMode === 'edit' ? 'Edit user' : 'User details'"
+    [description]="detailMode === 'edit' ? 'Editing will be available in a future version.' : 'Key information and access.'"
+    confirmLabel="Close"
     confirmVariant="secondary"
     [showCancel]="false"
     (confirm)="closeDetail()"

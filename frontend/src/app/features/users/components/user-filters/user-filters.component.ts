@@ -1,6 +1,9 @@
-// Scopo: pannello filtri per la lista utenti.
-// Sezioni: input di stato, opzioni e gestione aggiornamenti.
-// Scelte UI/UX: filtri compatti con reset rapido.
+// English: Filters panel for the users list.
+// Italiano: pannello filtri per la lista utenti.
+// English: Sections include state inputs, options, and update handling.
+// Italiano: Sezioni: input di stato, opzioni e gestione aggiornamenti.
+// English: UI/UX choice: compact filters with quick reset.
+// Italiano: Scelte UI/UX: filtri compatti con reset rapido.
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -30,19 +33,25 @@ const defaultFilters: UserFilterState = {
   styleUrls: ['./user-filters.component.css']
 })
 export class UserFiltersComponent implements OnChanges {
-  // Stato filtri in ingresso dal parent.
+  // English: Filter state received from parent.
+  // Italiano: Stato filtri in ingresso dal parent.
   @Input() filters: UserFilterState = { ...defaultFilters };
-  // Opzioni dinamiche per ruoli.
+  // English: Dynamic role options.
+  // Italiano: Opzioni dinamiche per ruoli.
   @Input() roleOptions: UiSelectOption[] = [];
-  // Opzioni dinamiche per company.
+  // English: Dynamic company options.
+  // Italiano: Opzioni dinamiche per company.
   @Input() companyOptions: UiSelectOption[] = [];
 
-  // Evento emesso ad ogni variazione filtri.
+  // English: Event emitted on each filter change.
+  // Italiano: Evento emesso ad ogni variazione filtri.
   @Output() filtersChange = new EventEmitter<UserFilterState>();
-  // Evento separato per il reset esplicito.
+  // English: Separate event for explicit reset.
+  // Italiano: Evento separato per il reset esplicito.
   @Output() reset = new EventEmitter<void>();
 
-  // Stato locale per evitare mutazioni dirette dell'input.
+  // English: Local state to avoid direct input mutations.
+  // Italiano: Stato locale per evitare mutazioni dirette dell'input.
   localFilters: UserFilterState = { ...defaultFilters };
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,24 +60,27 @@ export class UserFiltersComponent implements OnChanges {
     }
   }
 
-  // Propaga i filtri aggiornati verso il parent.
+  // English: Propagates updated filters to the parent.
+  // Italiano: Propaga i filtri aggiornati verso il parent.
   emitFilters(): void {
     this.filtersChange.emit({ ...this.localFilters });
   }
 
-  // Ripristina i filtri di default.
+  // English: Resets filters to defaults.
+  // Italiano: Ripristina i filtri di default.
   resetFilters(): void {
     this.localFilters = { ...defaultFilters };
     this.filtersChange.emit({ ...this.localFilters });
     this.reset.emit();
   }
 
-  // Opzioni statiche per stato attivazione.
+  // English: Static options for activation status.
+  // Italiano: Opzioni statiche per stato attivazione.
   get statusOptions(): UiSelectOption[] {
     return [
-      { label: 'Tutti gli stati', value: 'all' },
-      { label: 'Attivi', value: 'enabled' },
-      { label: 'Disabilitati', value: 'disabled' }
+      { label: 'All statuses', value: 'all' },
+      { label: 'Active', value: 'enabled' },
+      { label: 'Disabled', value: 'disabled' }
     ];
   }
 }

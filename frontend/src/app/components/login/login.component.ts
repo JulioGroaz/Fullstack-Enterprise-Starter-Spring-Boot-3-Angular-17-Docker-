@@ -48,7 +48,7 @@ export class LoginComponent {
       },
       error: err => {
         this.loading = false;
-        this.error = err?.error?.message || 'Login fallito';
+        this.error = err?.error?.message || 'Login failed';
       }
     });
   }

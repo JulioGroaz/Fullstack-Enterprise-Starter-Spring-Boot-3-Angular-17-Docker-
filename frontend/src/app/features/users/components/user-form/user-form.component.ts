@@ -1,6 +1,9 @@
-// Scopo: form utente riutilizzabile per view/edit/create.
-// Sezioni: input dati, stato form e gestione submit.
-// Scelte UI/UX: layout a due colonne e campi raggruppati per contesto.
+// English: Reusable user form for view/edit/create.
+// Italiano: form utente riutilizzabile per view/edit/create.
+// English: Sections include data inputs, form state, and submit handling.
+// Italiano: Sezioni: input dati, stato form e gestione submit.
+// English: UI/UX choice: two-column layout and context-grouped fields.
+// Italiano: Scelte UI/UX: layout a due colonne e campi raggruppati per contesto.
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -28,19 +31,25 @@ export interface UserFormValue {
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnChanges {
-  // Utente da visualizzare o modificare.
+  // English: User to display or edit.
+  // Italiano: Utente da visualizzare o modificare.
   @Input() user: User | null = null;
-  // Modalita del form.
+  // English: Form mode.
+  // Italiano: Modalita del form.
   @Input() mode: UserFormMode = 'view';
-  // Forza sola lettura.
+  // English: Forces read-only.
+  // Italiano: Forza sola lettura.
   @Input() readOnly = false;
-  // Opzioni ruolo opzionali dal parent.
+  // English: Optional role options from parent.
+  // Italiano: Opzioni ruolo opzionali dal parent.
   @Input() roleOptions: UiSelectOption[] = [];
 
-  // Evento emesso al submit valido.
+  // English: Event emitted on valid submit.
+  // Italiano: Evento emesso al submit valido.
   @Output() submitForm = new EventEmitter<UserFormValue>();
 
-  // Stato locale dei campi.
+  // English: Local field state.
+  // Italiano: Stato locale dei campi.
   formData: UserFormValue = {
     email: '',
     role: '',
@@ -49,7 +58,8 @@ export class UserFormComponent implements OnChanges {
     note: ''
   };
 
-  // Traccia l'invio per mostrare errori.
+  // English: Tracks submission to show errors.
+  // Italiano: Traccia l'invio per mostrare errori.
   submitted = false;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,7 +75,8 @@ export class UserFormComponent implements OnChanges {
     }
   }
 
-  // Opzioni ruolo di fallback se non passate.
+  // English: Fallback role options when not provided.
+  // Italiano: Opzioni ruolo di fallback se non passate.
   get resolvedRoleOptions(): UiSelectOption[] {
     if (this.roleOptions.length) {
       return this.roleOptions;
@@ -76,7 +87,8 @@ export class UserFormComponent implements OnChanges {
     return [];
   }
 
-  // Gestisce il submit, lasciando al parent la logica.
+  // English: Handles submit and defers logic to parent.
+  // Italiano: Gestisce il submit, lasciando al parent la logica.
   onSubmit(form: NgForm): void {
     this.submitted = true;
     if (this.readOnly || form.invalid) {
@@ -85,12 +97,14 @@ export class UserFormComponent implements OnChanges {
     this.submitForm.emit({ ...this.formData });
   }
 
-  // Aggiorna lo stato enabled da toggle.
+  // English: Updates enabled state from toggle.
+  // Italiano: Aggiorna lo stato enabled da toggle.
   onToggle(nextValue: boolean): void {
     this.formData.enabled = nextValue;
   }
 
-  // Estrae un "company" dal dominio email.
+  // English: Extracts a "company" from the email domain.
+  // Italiano: Estrae un "company" dal dominio email.
   private getCompanyFromEmail(email: string): string {
     const domain = email.split('@')[1] ?? '';
     return domain.toLowerCase();

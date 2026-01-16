@@ -9,8 +9,8 @@
     <!-- English: Title and support copy. -->
     <!-- Italiano: Titolo e copy di supporto. -->
     <div class="login-header">
-      <h1>Ben tornato</h1>
-      <p class="helper">Accedi per gestire il CRM.</p>
+      <h1>Welcome back</h1>
+      <p class="helper">Sign in to manage the CRM.</p>
     </div>
 
     <!-- English: Credentials form. -->
@@ -20,7 +20,7 @@
         label="Email"
         type="email"
         name="email"
-        placeholder="nome@azienda.it"
+        placeholder="name@company.com"
         [required]="true"
         autocomplete="email"
         [(ngModel)]="email"
@@ -29,19 +29,19 @@
         label="Password"
         type="password"
         name="password"
-        placeholder="Inserisci la password"
+        placeholder="Enter your password"
         [required]="true"
         autocomplete="current-password"
         [(ngModel)]="password"
       ></ui-input>
       <ui-button type="submit" [loading]="loading" [disabled]="loginForm.invalid || loading">
-        Accedi
+        Sign in
       </ui-button>
     </form>
 
     <div class="login-footer">
-      <span class="helper">Non hai un account?</span>
-      <a routerLink="/register">Registrati</a>
+      <span class="helper">Don't have an account?</span>
+      <a routerLink="/register">Sign up</a>
     </div>
 
     <!-- English: Error feedback on failed login. -->

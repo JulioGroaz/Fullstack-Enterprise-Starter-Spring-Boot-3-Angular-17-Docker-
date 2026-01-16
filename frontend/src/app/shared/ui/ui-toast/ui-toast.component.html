@@ -1,6 +1,9 @@
-<!-- Scopo: elenco toast con live region. -->
-<!-- Sezioni: lista toast e pulsante di chiusura. -->
-<!-- Scelte UI/UX: messaggi brevi per non interrompere il flusso. -->
+<!-- English: Toast list with live region. -->
+<!-- Italiano: elenco toast con live region. -->
+<!-- English: Sections include toast list and close button. -->
+<!-- Italiano: Sezioni: lista toast e pulsante di chiusura. -->
+<!-- English: UI/UX choice: short messages to avoid interrupting flow. -->
+<!-- Italiano: Scelte UI/UX: messaggi brevi per non interrompere il flusso. -->
 <div class="toast-stack" aria-live="polite">
   <article
     class="toast"
@@ -13,6 +16,6 @@
       <strong>{{ toast.title }}</strong>
       <p>{{ toast.message }}</p>
     </div>
-    <button class="toast-close" type="button" (click)="dismiss(toast.id)">Chiudi</button>
+    <button class="toast-close" type="button" (click)="dismiss(toast.id)">Close</button>
   </article>
 </div>

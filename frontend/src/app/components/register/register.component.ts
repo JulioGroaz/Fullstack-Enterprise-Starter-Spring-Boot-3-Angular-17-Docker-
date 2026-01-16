@@ -48,7 +48,7 @@ export class RegisterComponent {
       },
       error: err => {
         this.loading = false;
-        this.error = err?.error?.message || 'Registrazione fallita';
+        this.error = err?.error?.message || 'Registration failed';
       }
     });
   }

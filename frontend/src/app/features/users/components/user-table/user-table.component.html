@@ -1,14 +1,17 @@
-<!-- Scopo: tabella utenti con azioni e stati. -->
-<!-- Sezioni: intestazione, righe utenti, skeleton loading. -->
-<!-- Scelte UI/UX: righe compatte per alta densita informativa. -->
+<!-- English: Users table with actions and status. -->
+<!-- Italiano: tabella utenti con azioni e stati. -->
+<!-- English: Sections include header, user rows, loading skeleton. -->
+<!-- Italiano: Sezioni: intestazione, righe utenti, skeleton loading. -->
+<!-- English: UI/UX choice: compact rows for high information density. -->
+<!-- Italiano: Scelte UI/UX: righe compatte per alta densita informativa. -->
 <div class="table-wrapper">
   <table class="user-table" *ngIf="!loading">
     <thead>
       <tr>
-        <th scope="col">Utente</th>
-        <th scope="col">Ruoli</th>
-        <th scope="col">Stato</th>
-        <th scope="col">Azioni</th>
+        <th scope="col">User</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -36,21 +39,23 @@
         </td>
         <td>
           <div class="row-actions">
-            <!-- Azioni view/edit (UI pronta, logica nel parent). -->
-            <ui-button variant="ghost" size="sm" (click)="viewUser.emit(user)">Dettagli</ui-button>
+            <!-- English: View/edit actions (UI ready, logic in parent). -->
+            <!-- Italiano: Azioni view/edit (UI pronta, logica nel parent). -->
+            <ui-button variant="ghost" size="sm" (click)="viewUser.emit(user)">Details</ui-button>
             <ui-button
               *ngIf="!isAdminOnly(user)"
               variant="secondary"
               size="sm"
               (click)="editUser.emit(user)"
             >
-              Modifica
+              Edit
             </ui-button>
-            <!-- Toggle con conferma gestita dal parent. -->
+            <!-- English: Toggle with confirmation handled by parent. -->
+            <!-- Italiano: Toggle con conferma gestita dal parent. -->
             <ui-toggle
               *ngIf="!isAdminOnly(user)"
               [checked]="user.enabled"
-              [ariaLabel]="user.enabled ? 'Disabilita utente' : 'Abilita utente'"
+              [ariaLabel]="user.enabled ? 'Disable user' : 'Enable user'"
               (changed)="requestToggle(user)"
             ></ui-toggle>
           </div>
@@ -59,7 +64,8 @@
     </tbody>
   </table>
 
-  <!-- Skeleton per caricamento. -->
+  <!-- English: Loading skeleton. -->
+  <!-- Italiano: Skeleton per caricamento. -->
   <div class="skeleton" *ngIf="loading">
     <div class="skeleton-row" *ngFor="let _ of [1, 2, 3, 4]"></div>
   </div>

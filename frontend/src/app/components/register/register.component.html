@@ -9,8 +9,8 @@
     <!-- English: Title and support copy. -->
     <!-- Italiano: Titolo e copy di supporto. -->
     <div class="register-header">
-      <h1>Crea account</h1>
-      <p class="helper">Registrati come utente standard.</p>
+      <h1>Create account</h1>
+      <p class="helper">Register as a standard user.</p>
     </div>
 
     <!-- English: Credentials form. -->
@@ -20,7 +20,7 @@
         label="Email"
         type="email"
         name="email"
-        placeholder="nome@azienda.it"
+        placeholder="name@company.com"
         [required]="true"
         autocomplete="email"
         [(ngModel)]="email"
@@ -29,22 +29,23 @@
         label="Password"
         type="password"
         name="password"
-        placeholder="Scegli una password"
+        placeholder="Choose a password"
         [required]="true"
         autocomplete="new-password"
         [(ngModel)]="password"
       ></ui-input>
       <ui-button type="submit" [loading]="loading" [disabled]="registerForm.invalid || loading">
-        Registrati
+        Create account
       </ui-button>
     </form>
 
     <!-- English: Error feedback on failed registration. -->
     <!-- Italiano: Feedback errore in caso di registrazione fallita. -->
     <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="helper">Registrations create standard users only.</p>
     <div class="register-footer">
-      <span class="helper">Hai gia un account?</span>
-      <a routerLink="/login">Accedi</a>
+      <span class="helper">Already have an account?</span>
+      <a routerLink="/login">Sign in</a>
     </div>
   </app-card>
 </div>

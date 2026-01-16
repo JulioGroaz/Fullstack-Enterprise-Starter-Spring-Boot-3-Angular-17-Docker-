@@ -1,24 +1,30 @@
-<!-- Scopo: contenitore modale con header, body e footer. -->
-<!-- Sezioni: backdrop, contenuto centrale, footer con CTA. -->
-<!-- Scelte UI/UX: CTA sempre in basso per chiarezza decisionale. -->
+<!-- English: Modal container with header, body, and footer. -->
+<!-- Italiano: contenitore modale con header, body e footer. -->
+<!-- English: Sections include backdrop, center content, CTA footer. -->
+<!-- Italiano: Sezioni: backdrop, contenuto centrale, footer con CTA. -->
+<!-- English: UI/UX choice: CTA always at the bottom for decision clarity. -->
+<!-- Italiano: Scelte UI/UX: CTA sempre in basso per chiarezza decisionale. -->
 <div class="modal-backdrop" *ngIf="open" (click)="onCancel()"></div>
 <div class="modal-wrapper" *ngIf="open" role="dialog" aria-modal="true">
   <div class="modal" (click)="$event.stopPropagation()">
-    <!-- Header con titolo e descrizione. -->
+    <!-- English: Header with title and description. -->
+    <!-- Italiano: Header con titolo e descrizione. -->
     <header class="modal-header">
       <div>
         <h3>{{ title }}</h3>
         <p *ngIf="description">{{ description }}</p>
       </div>
-      <ui-button variant="ghost" size="sm" ariaLabel="Chiudi" (click)="onCancel()">Chiudi</ui-button>
+      <ui-button variant="ghost" size="sm" ariaLabel="Close" (click)="onCancel()">Close</ui-button>
     </header>
 
-    <!-- Corpo principale personalizzabile. -->
+    <!-- English: Customizable main body. -->
+    <!-- Italiano: Corpo principale personalizzabile. -->
     <section class="modal-body">
       <ng-content></ng-content>
     </section>
 
-    <!-- Footer standard con CTA. -->
+    <!-- English: Standard footer with CTA. -->
+    <!-- Italiano: Footer standard con CTA. -->
     <footer class="modal-footer" *ngIf="showFooter">
       <ui-button *ngIf="showCancel" variant="ghost" (click)="onCancel()">{{ cancelLabel }}</ui-button>
       <ui-button

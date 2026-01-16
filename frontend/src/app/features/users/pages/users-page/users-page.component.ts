@@ -1,6 +1,9 @@
-// Scopo: pagina principale di gestione utenti con filtri e tabella.
-// Sezioni: stato pagina, caricamento dati, filtri e azioni.
-// Scelte UI/UX: feedback con toast e conferma per azioni distruttive.
+// English: Main user management page with filters and table.
+// Italiano: pagina principale di gestione utenti con filtri e tabella.
+// English: Sections include page state, data loading, filters, and actions.
+// Italiano: Sezioni: stato pagina, caricamento dati, filtri e azioni.
+// English: UI/UX choice: toast feedback and confirmation for destructive actions.
+// Italiano: Scelte UI/UX: feedback con toast e conferma per azioni distruttive.
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
@@ -35,16 +38,21 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
   styleUrls: ['./users-page.component.css']
 })
 export class UsersPageComponent implements OnInit {
-  // Lista completa utenti dal backend.
+  // English: Full user list from backend.
+  // Italiano: Lista completa utenti dal backend.
   users: User[] = [];
-  // Lista filtrata da mostrare.
+  // English: Filtered list to display.
+  // Italiano: Lista filtrata da mostrare.
   filteredUsers: User[] = [];
-  // Stato di caricamento globale.
+  // English: Global loading state.
+  // Italiano: Stato di caricamento globale.
   loading = false;
-  // Messaggio errore pagina.
+  // English: Page error message.
+  // Italiano: Messaggio errore pagina.
   error = '';
 
-  // Stato filtri attivi.
+  // English: Active filter state.
+  // Italiano: Stato filtri attivi.
   filters: UserFilterState = {
     search: '',
     status: 'all',
@@ -52,15 +60,18 @@ export class UsersPageComponent implements OnInit {
     company: 'all'
   };
 
-  // Opzioni dinamiche per i select.
-  roleOptions: UiSelectOption[] = [{ label: 'Tutti i ruoli', value: 'all' }];
-  companyOptions: UiSelectOption[] = [{ label: 'Tutte le aziende', value: 'all' }];
+  // English: Dynamic select options.
+  // Italiano: Opzioni dinamiche per i select.
+  roleOptions: UiSelectOption[] = [{ label: 'All roles', value: 'all' }];
+  companyOptions: UiSelectOption[] = [{ label: 'All companies', value: 'all' }];
 
-  // Stato conferma toggle.
+  // English: Toggle confirmation state.
+  // Italiano: Stato conferma toggle.
   confirmOpen = false;
   pendingToggle: UserToggleEvent | null = null;
 
-  // Stato modale dettaglio.
+  // English: Detail modal state.
+  // Italiano: Stato modale dettaglio.
   detailOpen = false;
   detailMode: 'view' | 'edit' = 'view';
   selectedUser: User | null = null;
@@ -71,7 +82,8 @@ export class UsersPageComponent implements OnInit {
     this.loadUsers();
   }
 
-  // Carica la lista utenti dal backend.
+  // English: Loads the user list from the backend.
+  // Italiano: Carica la lista utenti dal backend.
   loadUsers(): void {
     this.loading = true;
     this.error = '';
@@ -85,25 +97,28 @@ export class UsersPageComponent implements OnInit {
           this.applyFilters();
         },
         error: err => {
-          this.error = err?.error?.message || 'Errore nel caricamento utenti';
-          this.toastService.error('Caricamento fallito', this.error);
+          this.error = err?.error?.message || 'Failed to load users';
+          this.toastService.error('Load failed', this.error);
         }
       });
   }
 
-  // Aggiorna i filtri quando cambiano dal child.
+  // English: Updates filters when the child emits changes.
+  // Italiano: Aggiorna i filtri quando cambiano dal child.
   onFiltersChange(filters: UserFilterState): void {
     this.filters = filters;
     this.applyFilters();
   }
 
-  // Ripristina filtri base dalla UI.
+  // English: Resets filters to defaults from the UI.
+  // Italiano: Ripristina filtri base dalla UI.
   resetFilters(): void {
     this.filters = { search: '', status: 'all', role: 'all', company: 'all' };
     this.applyFilters();
   }
 
-  // Applica i filtri alla lista utenti.
+  // English: Applies filters to the user list.
+  // Italiano: Applica i filtri alla lista utenti.
   applyFilters(): void {
     const search = this.filters.search.trim().toLowerCase();
     this.filteredUsers = this.users.filter(user => {
@@ -128,13 +143,15 @@ export class UsersPageComponent implements OnInit {
     });
   }
 
-  // Richiesta toggle stato: apre conferma.
+  // English: Status toggle request opens confirmation.
+  // Italiano: Richiesta toggle stato: apre conferma.
   onToggleRequest(event: UserToggleEvent): void {
     this.pendingToggle = event;
     this.confirmOpen = true;
   }
 
-  // Conferma toggle stato e chiama il backend.
+  // English: Confirms status toggle and calls the backend.
+  // Italiano: Conferma toggle stato e chiama il backend.
   confirmToggle(): void {
     if (!this.pendingToggle) {
       return;
@@ -145,37 +162,41 @@ export class UsersPageComponent implements OnInit {
       next: updated => {
         this.users = this.users.map(item => (item.id === updated.id ? updated : item));
         this.applyFilters();
-        const message = nextEnabled ? 'Utente abilitato' : 'Utente disabilitato';
-        this.toastService.success('Operazione completata', message);
+        const message = nextEnabled ? 'User enabled' : 'User disabled';
+        this.toastService.success('Update completed', message);
       },
       error: err => {
-        const message = err?.error?.message || 'Operazione non riuscita';
-        this.toastService.error('Errore stato utente', message);
+        const message = err?.error?.message || 'Action failed';
+        this.toastService.error('User status error', message);
       }
     });
     this.cancelToggle();
   }
 
-  // Chiude la modale di conferma.
+  // English: Closes the confirmation modal.
+  // Italiano: Chiude la modale di conferma.
   cancelToggle(): void {
     this.confirmOpen = false;
     this.pendingToggle = null;
   }
 
-  // Apre la modale dettaglio.
+  // English: Opens the detail modal.
+  // Italiano: Apre la modale dettaglio.
   openDetail(user: User, mode: 'view' | 'edit'): void {
     this.selectedUser = user;
     this.detailMode = mode;
     this.detailOpen = true;
   }
 
-  // Chiude la modale dettaglio.
+  // English: Closes the detail modal.
+  // Italiano: Chiude la modale dettaglio.
   closeDetail(): void {
     this.detailOpen = false;
     this.selectedUser = null;
   }
 
-  // Aggiorna le opzioni dei filtri in base ai dati.
+  // English: Updates filter options based on data.
+  // Italiano: Aggiorna le opzioni dei filtri in base ai dati.
   private syncOptions(users: User[]): void {
     const roles = new Set<string>();
     const companies = new Set<string>();
@@ -185,12 +206,12 @@ export class UsersPageComponent implements OnInit {
     });
 
     this.roleOptions = [
-      { label: 'Tutti i ruoli', value: 'all' },
+      { label: 'All roles', value: 'all' },
       ...Array.from(roles).map(role => ({ label: this.roleLabel(role), value: role }))
     ];
 
     this.companyOptions = [
-      { label: 'Tutte le aziende', value: 'all' },
+      { label: 'All companies', value: 'all' },
       ...Array.from(companies)
         .filter(Boolean)
         .sort()
@@ -198,7 +219,8 @@ export class UsersPageComponent implements OnInit {
     ];
   }
 
-  // Etichetta ruolo coerente con i badge.
+  // English: Role label consistent with badges.
+  // Italiano: Etichetta ruolo coerente con i badge.
   private roleLabel(role: string): string {
     const normalized = role.replace('ROLE_', '').replace('_', ' ');
     const upper = normalized.toUpperCase();
@@ -214,7 +236,8 @@ export class UsersPageComponent implements OnInit {
     return normalized.charAt(0).toUpperCase() + normalized.slice(1).toLowerCase();
   }
 
-  // Estrae il dominio dalla email.
+  // English: Extracts domain from email.
+  // Italiano: Estrae il dominio dalla email.
   private getCompanyFromEmail(email: string): string {
     return (email.split('@')[1] ?? '').toLowerCase();
   }

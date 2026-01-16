@@ -1,6 +1,9 @@
-// Scopo: tabella utenti con azioni riga e badge ruolo/stato.
-// Sezioni: input lista, output azioni e helper di formattazione.
-// Scelte UI/UX: righe disabilitate attenuate e azioni esplicite.
+// English: Users table with row actions and role/status badges.
+// Italiano: tabella utenti con azioni riga e badge ruolo/stato.
+// English: Sections include list input, action outputs, and formatting helpers.
+// Italiano: Sezioni: input lista, output azioni e helper di formattazione.
+// English: UI/UX choice: dimmed disabled rows and explicit actions.
+// Italiano: Scelte UI/UX: righe disabilitate attenuate e azioni esplicite.
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../../../models';
@@ -21,24 +24,31 @@ export interface UserToggleEvent {
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent {
-  // Lista utenti da renderizzare.
+  // English: Users list to render.
+  // Italiano: Lista utenti da renderizzare.
   @Input() users: User[] = [];
-  // Stato di caricamento per mostrare skeleton.
+  // English: Loading state to show skeleton.
+  // Italiano: Stato di caricamento per mostrare skeleton.
   @Input() loading = false;
 
-  // Evento per richiesta di toggle stato.
+  // English: Event for status toggle request.
+  // Italiano: Evento per richiesta di toggle stato.
   @Output() toggleStatus = new EventEmitter<UserToggleEvent>();
-  // Evento per apertura dettaglio.
+  // English: Event to open details.
+  // Italiano: Evento per apertura dettaglio.
   @Output() viewUser = new EventEmitter<User>();
-  // Evento per apertura modifica.
+  // English: Event to open edit.
+  // Italiano: Evento per apertura modifica.
   @Output() editUser = new EventEmitter<User>();
 
-  // TrackBy per righe stabili.
+  // English: TrackBy for stable rows.
+  // Italiano: TrackBy per righe stabili.
   trackById(_: number, user: User): number {
     return user.id;
   }
 
-  // Formatta la label del ruolo.
+  // English: Formats the role label.
+  // Italiano: Formatta la label del ruolo.
   roleLabel(role: string): string {
     const normalized = role.replace('ROLE_', '').replace('_', ' ');
     const upper = normalized.toUpperCase();
@@ -54,7 +64,8 @@ export class UserTableComponent {
     return normalized.charAt(0).toUpperCase() + normalized.slice(1).toLowerCase();
   }
 
-  // Assegna un tono al badge ruolo.
+  // English: Assigns a tone to the role badge.
+  // Italiano: Assegna un tono al badge ruolo.
   roleTone(role: string): 'neutral' | 'success' | 'warning' | 'info' {
     const normalized = role.toUpperCase();
     if (normalized.includes('ADMIN')) {
@@ -69,22 +80,26 @@ export class UserTableComponent {
     return 'success';
   }
 
-  // Etichetta dello stato utente.
+  // English: User status label.
+  // Italiano: Etichetta dello stato utente.
   statusLabel(user: User): string {
-    return user.enabled ? 'Attivo' : 'Disabilitato';
+    return user.enabled ? 'Active' : 'Disabled';
   }
 
-  // Tono del badge stato.
+  // English: Status badge tone.
+  // Italiano: Tono del badge stato.
   statusTone(user: User): 'success' | 'danger' {
     return user.enabled ? 'success' : 'danger';
   }
 
-  // Emissione richiesta toggle con conferma a valle.
+  // English: Emits toggle request with confirmation downstream.
+  // Italiano: Emissione richiesta toggle con conferma a valle.
   requestToggle(user: User): void {
     this.toggleStatus.emit({ user, nextEnabled: !user.enabled });
   }
 
-  // Verifica se l'utente ha solo il ruolo admin.
+  // English: Checks if the user has only the admin role.
+  // Italiano: Verifica se l'utente ha solo il ruolo admin.
   isAdminOnly(user: User): boolean {
     const roles = user.roles ?? [];
     const hasAdmin = roles.some(role => role.toUpperCase().includes('ADMIN'));
