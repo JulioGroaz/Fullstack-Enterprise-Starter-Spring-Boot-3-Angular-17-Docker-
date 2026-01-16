@@ -1,5 +1,27 @@
-/* English: Profile component styles (uses shared global tokens). */
-/* Italiano: Stili componente profilo (usa token globali condivisi). */
+/* Scopo: stile della card profilo. */
+/* Sezioni: layout righe e badge list. */
+/* Scelte UI/UX: allineamento verticale per chiarezza. */
+.profile-card {
+  display: grid;
+  gap: var(--space-3);
+}
 
-/* English: No component-specific overrides yet. */
-/* Italiano: Nessun override specifico per ora. */
+.profile-row {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.value {
+  font-weight: 600;
+}
+
+.badge-list {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}

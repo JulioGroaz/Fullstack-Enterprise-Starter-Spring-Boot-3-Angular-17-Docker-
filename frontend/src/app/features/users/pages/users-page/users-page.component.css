@@ -1,0 +1,35 @@
+/* Scopo: layout della pagina utenti. */
+/* Sezioni: spacing verticale, header tabella e testo modale. */
+/* Scelte UI/UX: spacing ampio per lettura rilassata. */
+.users-page {
+  display: grid;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+}
+
+.table-card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.table-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.table-header h3 {
+  margin: 0;
+}
+
+.helper {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+.modal-text {
+  margin: 0;
+  font-size: 14px;
+}

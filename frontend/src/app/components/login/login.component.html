@@ -1,26 +1,38 @@
-<!-- English: Login form layout. -->
-<!-- Italiano: Layout form di login. -->
-<div class="card auth-card">
-  <!-- English: Title and helper copy. -->
-  <!-- Italiano: Titolo e testo di supporto. -->
-  <h1>Welcome back</h1>
-  <p class="helper">Sign in to reach your workspace.</p>
+<!-- Scopo: layout login con card e form compatto. -->
+<!-- Sezioni: titolo, form credenziali, feedback errore. -->
+<!-- Scelte UI/UX: card centrata per focalizzare l'attenzione. -->
+<app-card class="login-card">
+  <!-- Titolo e copy di supporto. -->
+  <div class="login-header">
+    <h1>Ben tornato</h1>
+    <p class="helper">Accedi per gestire il CRM.</p>
+  </div>
 
-  <!-- English: Credential form. -->
-  <!-- Italiano: Form credenziali. -->
+  <!-- Form credenziali. -->
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div class="field">
-      <label>Email</label>
-      <input type="email" name="email" [(ngModel)]="email" required />
-    </div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" required />
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid || loading">Sign in</button>
+    <ui-input
+      label="Email"
+      type="email"
+      name="email"
+      placeholder="nome@azienda.it"
+      [required]="true"
+      autocomplete="email"
+      [(ngModel)]="email"
+    ></ui-input>
+    <ui-input
+      label="Password"
+      type="password"
+      name="password"
+      placeholder="Inserisci la password"
+      [required]="true"
+      autocomplete="current-password"
+      [(ngModel)]="password"
+    ></ui-input>
+    <ui-button type="submit" [loading]="loading" [disabled]="loginForm.invalid || loading">
+      Accedi
+    </ui-button>
   </form>
 
-  <!-- English: Error feedback. -->
-  <!-- Italiano: Feedback errore. -->
-  <div class="error" *ngIf="error">{{ error }}</div>
-</div>
+  <!-- Feedback errore in caso di login fallito. -->
+  <p class="error" *ngIf="error">{{ error }}</p>
+</app-card>

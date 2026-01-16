@@ -1,0 +1,73 @@
+/* Scopo: stile della modale e del backdrop. */
+/* Sezioni: overlay, contenitore, header/body/footer. */
+/* Scelte UI/UX: overlay scuro per isolare il contenuto. */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 40;
+}
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  z-index: 50;
+}
+
+.modal {
+  width: min(720px, 92vw);
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+/* Header con titolo e descrizione. */
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.modal-header p {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Corpo centrale. */
+.modal-body {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* Footer con CTA allineate. */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+@media (max-width: 640px) {
+  .modal {
+    padding: var(--space-3);
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,30 +1,36 @@
-<!-- English: Shell layout with navigation and outlet. -->
-<!-- Italiano: Layout shell con navigazione e outlet. -->
+<!-- Scopo: layout shell con header e navigazione. -->
+<!-- Sezioni: brand, nav, metadati utente, outlet. -->
+<!-- Scelte UI/UX: nav sintetica per accesso rapido alle aree. -->
 <header class="shell-header">
-  <!-- English: Brand block. -->
-  <!-- Italiano: Blocco brand. -->
-  <div>
-    <strong>Fullstack Starter</strong>
-    <div class="helper">Secure workspace</div>
+  <!-- Brand e contesto. -->
+  <div class="brand">
+    <strong>CRM Workspace</strong>
+    <div class="helper">Gestione utenti</div>
   </div>
 
-  <!-- English: Primary navigation links. -->
-  <!-- Italiano: Link di navigazione principali. -->
+  <!-- Navigazione principale. -->
   <nav class="nav">
-    <a routerLink="/profile">Profile</a>
-    <a routerLink="/admin/users">Admin Users</a>
+    <a routerLink="/profile" routerLinkActive="active">Profilo</a>
+    <a routerLink="/admin/users" routerLinkActive="active">Utenti</a>
   </nav>
 
-  <!-- English: User actions. -->
-  <!-- Italiano: Azioni utente. -->
-  <div class="actions">
-    <span class="tag" *ngIf="auth.getUser() as user">{{ user.email }}</span>
-    <button class="secondary" (click)="logout()">Logout</button>
+  <!-- Metadati utente e azioni. -->
+  <div class="actions" *ngIf="auth.getUser() as user">
+    <div class="user-meta">
+      <span class="user-email">{{ user.email }}</span>
+      <div class="role-badges">
+        <ui-badge
+          *ngFor="let role of user.roles"
+          [label]="roleLabel(role)"
+          tone="neutral"
+        ></ui-badge>
+      </div>
+    </div>
+    <ui-button variant="ghost" size="sm" (click)="logout()">Logout</ui-button>
   </div>
 </header>
 
-<!-- English: Routed content area. -->
-<!-- Italiano: Area contenuto con routing. -->
+<!-- Area contenuto con routing. -->
 <main class="container">
   <router-outlet></router-outlet>
 </main>

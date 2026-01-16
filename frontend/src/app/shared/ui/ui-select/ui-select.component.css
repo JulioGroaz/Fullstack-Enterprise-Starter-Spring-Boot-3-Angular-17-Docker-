@@ -1,0 +1,50 @@
+/* Scopo: stile del select coerente con gli input. */
+/* Sezioni: contenitore, select, helper/errore, stato error. */
+/* Scelte UI/UX: consistenza visiva con i campi testo. */
+.ui-select {
+  display: grid;
+  gap: var(--space-1);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.label {
+  font-weight: 600;
+}
+
+select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(14, 124, 134, 0.6);
+  box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.12);
+}
+
+/* Stato disabled per contesto read-only. */
+select:disabled {
+  background: #f6f3ef;
+  color: var(--muted);
+}
+
+.helper {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 12px;
+}
+
+.has-error select {
+  border-color: rgba(201, 42, 42, 0.6);
+  box-shadow: 0 0 0 3px rgba(201, 42, 42, 0.12);
+}

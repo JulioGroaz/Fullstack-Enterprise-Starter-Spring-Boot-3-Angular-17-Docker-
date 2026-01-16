@@ -1,0 +1,53 @@
+/* Scopo: stile della testata pagina. */
+/* Sezioni: layout, breadcrumb, tipografia, azioni. */
+/* Scelte UI/UX: azioni separate per ridurre errori. */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) 0 var(--space-3);
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.title-block p {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.breadcrumbs {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: var(--space-1);
+}
+
+.breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 var(--space-1);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,15 +1,15 @@
-// English: Route configuration for public and protected areas.
-// Italiano: Configurazione route per aree pubbliche e protette.
+// Scopo: configurazione route per aree pubbliche e protette.
+// Sezioni: import componenti e definizione dei percorsi.
+// Scelte UI/UX: separazione chiara tra login e area protetta.
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { UsersPageComponent } from './features/users/pages/users-page/users-page.component';
 import { ShellComponent } from './components/shell/shell.component';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
 
-// English: Defines the application routes and guards.
-// Italiano: Definisce le route e le guardie dell'applicazione.
+// Definizione delle route e guardie applicate.
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -20,7 +20,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       {
         path: 'admin/users',
-        component: AdminUsersComponent,
+        component: UsersPageComponent,
         canActivate: [roleGuard],
         data: { roles: ['ADMIN'] }
       },

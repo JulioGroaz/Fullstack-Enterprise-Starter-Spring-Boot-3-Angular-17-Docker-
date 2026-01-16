@@ -1,0 +1,58 @@
+/* Scopo: stile per input e textarea con label. */
+/* Sezioni: contenitore, campi, helper/errore, stato error. */
+/* Scelte UI/UX: focus visibile per guidare l'utente. */
+.ui-input {
+  display: grid;
+  gap: var(--space-1);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.label {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(14, 124, 134, 0.6);
+  box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.12);
+}
+
+/* Stato readonly o disabled per contesto read-only. */
+input:disabled,
+textarea:disabled,
+input[readonly],
+textarea[readonly] {
+  background: #f6f3ef;
+  color: var(--muted);
+}
+
+/* Helper ed errori in basso. */
+.helper {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* Stato errore evidenziato. */
+.has-error input,
+.has-error textarea {
+  border-color: rgba(201, 42, 42, 0.6);
+  box-shadow: 0 0 0 3px rgba(201, 42, 42, 0.12);
+}

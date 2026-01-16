@@ -1,0 +1,18 @@
+<!-- Scopo: struttura del toggle con switch e label. -->
+<!-- Sezioni: input checkbox e testo opzionale. -->
+<!-- Scelte UI/UX: switch compatto per azioni frequenti. -->
+<label class="ui-toggle" [class.is-disabled]="disabled" [attr.for]="toggleId">
+  <input
+    [id]="toggleId"
+    type="checkbox"
+    role="switch"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="onToggle($event)"
+    [attr.aria-label]="ariaLabel || label || null"
+  />
+  <span class="track" aria-hidden="true">
+    <span class="thumb"></span>
+  </span>
+  <span class="label" *ngIf="label">{{ label }}</span>
+</label>

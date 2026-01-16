@@ -1,0 +1,41 @@
+<!-- Scopo: campo input con label, helper ed errori. -->
+<!-- Sezioni: label, input/textarea, helper ed errore. -->
+<!-- Scelte UI/UX: layout verticale per ridurre il carico cognitivo. -->
+<label class="ui-input" [class.has-error]="error">
+  <span class="label" *ngIf="label">{{ label }}</span>
+
+  <!-- Campo input singola linea. -->
+  <input
+    *ngIf="!multiline"
+    [id]="resolvedId"
+    [type]="type"
+    [value]="value"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="isDisabled"
+    [readonly]="readonly"
+    [attr.autocomplete]="autocomplete || null"
+    [attr.aria-label]="ariaLabel || label || null"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onBlur()"
+  />
+
+  <!-- Campo textarea per note o descrizioni. -->
+  <textarea
+    *ngIf="multiline"
+    [id]="resolvedId"
+    [value]="value"
+    [rows]="rows"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="isDisabled"
+    [readonly]="readonly"
+    [attr.aria-label]="ariaLabel || label || null"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onBlur()"
+  ></textarea>
+
+  <!-- Testo di supporto o messaggi di errore. -->
+  <span class="helper" *ngIf="helper && !error">{{ helper }}</span>
+  <span class="error" *ngIf="error">{{ error }}</span>
+</label>

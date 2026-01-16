@@ -1,0 +1,33 @@
+<!-- Scopo: contenitore modale con header, body e footer. -->
+<!-- Sezioni: backdrop, contenuto centrale, footer con CTA. -->
+<!-- Scelte UI/UX: CTA sempre in basso per chiarezza decisionale. -->
+<div class="modal-backdrop" *ngIf="open" (click)="onCancel()"></div>
+<div class="modal-wrapper" *ngIf="open" role="dialog" aria-modal="true">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <!-- Header con titolo e descrizione. -->
+    <header class="modal-header">
+      <div>
+        <h3>{{ title }}</h3>
+        <p *ngIf="description">{{ description }}</p>
+      </div>
+      <ui-button variant="ghost" size="sm" ariaLabel="Chiudi" (click)="onCancel()">Chiudi</ui-button>
+    </header>
+
+    <!-- Corpo principale personalizzabile. -->
+    <section class="modal-body">
+      <ng-content></ng-content>
+    </section>
+
+    <!-- Footer standard con CTA. -->
+    <footer class="modal-footer" *ngIf="showFooter">
+      <ui-button *ngIf="showCancel" variant="ghost" (click)="onCancel()">{{ cancelLabel }}</ui-button>
+      <ui-button
+        [variant]="confirmVariant"
+        [disabled]="confirmDisabled"
+        (click)="onConfirm()"
+      >
+        {{ confirmLabel }}
+      </ui-button>
+    </footer>
+  </div>
+</div>

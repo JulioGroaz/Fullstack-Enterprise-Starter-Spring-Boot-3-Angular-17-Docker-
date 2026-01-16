@@ -1,0 +1,100 @@
+/* Scopo: stile del bottone e delle sue varianti. */
+/* Sezioni: base, varianti cromatiche, dimensioni, stato loading. */
+/* Scelte UI/UX: ombre leggere per profondita senza eccessi. */
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 10px 18px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+/* Variante primaria: azioni principali. */
+.ui-button--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(14, 124, 134, 0.2);
+}
+
+/* Variante secondaria: azioni di supporto. */
+.ui-button--secondary {
+  background: #fff;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+/* Variante danger: azioni distruttive. */
+.ui-button--danger {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(201, 42, 42, 0.2);
+}
+
+/* Variante ghost: azioni leggere. */
+.ui-button--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+/* Dimensioni per densita diverse. */
+.ui-button--sm {
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.ui-button--md {
+  font-size: 14px;
+}
+
+.ui-button--lg {
+  padding: 12px 22px;
+  font-size: 16px;
+}
+
+/* Stato hover/focus per accessibilita. */
+.ui-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(20, 20, 20, 0.15);
+}
+
+.ui-button:focus-visible {
+  outline: 2px solid rgba(14, 124, 134, 0.4);
+  outline-offset: 2px;
+}
+
+/* Stato disabilitato coerente. */
+.ui-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Spinner minimale per loading. */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  animation: spin 0.6s linear infinite;
+}
+
+.ui-button--secondary .spinner,
+.ui-button--ghost .spinner {
+  border-color: rgba(20, 20, 20, 0.25);
+  border-top-color: var(--ink);
+}
+
+/* Animazione semplice per il feedback. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

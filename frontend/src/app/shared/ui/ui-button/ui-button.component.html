@@ -1,0 +1,14 @@
+<!-- Scopo: template del bottone con contenuto proiettato. -->
+<!-- Sezioni: spinner di loading e label visibile. -->
+<!-- Scelte UI/UX: loading compatto per non spostare il layout. -->
+<button
+  [attr.type]="type"
+  [disabled]="isDisabled"
+  [ngClass]="buttonClasses"
+  [attr.aria-busy]="loading"
+  [attr.aria-label]="ariaLabel || null"
+>
+  <!-- Feedback visivo per operazioni in corso. -->
+  <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
+  <span class="label"><ng-content></ng-content></span>
+</button>

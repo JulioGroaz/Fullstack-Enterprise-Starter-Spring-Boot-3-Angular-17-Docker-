@@ -1,0 +1,32 @@
+/* Scopo: stile dello stato vuoto. */
+/* Sezioni: layout, icona, tipografia. */
+/* Scelte UI/UX: icona minima per mantenere tono sobrio. */
+.empty-state {
+  text-align: center;
+  padding: var(--space-4) 0;
+  display: grid;
+  gap: var(--space-2);
+  color: var(--muted);
+}
+
+.empty-icon {
+  font-size: 28px;
+  color: var(--accent);
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: var(--ink);
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}

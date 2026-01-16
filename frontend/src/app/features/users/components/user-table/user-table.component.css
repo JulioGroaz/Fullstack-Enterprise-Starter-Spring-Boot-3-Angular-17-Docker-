@@ -1,0 +1,80 @@
+/* Scopo: stile tabella utenti e righe. */
+/* Sezioni: tabella, celle, badge ruoli, azioni, skeleton. */
+/* Scelte UI/UX: header leggero per favorire la lettura. */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.user-table th {
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+}
+
+/* Righe disabilitate attenuate. */
+.user-table tr.is-disabled {
+  opacity: 0.6;
+}
+
+.user-cell {
+  display: grid;
+  gap: 4px;
+}
+
+.user-email {
+  font-weight: 600;
+}
+
+.user-meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.role-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Skeleton per caricamento della tabella. */
+.skeleton {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.skeleton-row {
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f1ede6 0%, #f9f6f0 50%, #f1ede6 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

@@ -1,0 +1,74 @@
+/* Scopo: stile del container toast e delle varianti. */
+/* Sezioni: stack, card toast, varianti colore. */
+/* Scelte UI/UX: posizionamento alto-destra per visibilita. */
+.toast-stack {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  gap: var(--space-2);
+  z-index: 60;
+  width: min(360px, 90vw);
+}
+
+.toast {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  animation: toastIn 0.2s ease;
+}
+
+.toast strong {
+  font-size: 13px;
+}
+
+.toast p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.toast-close {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Varianti cromatiche per feedback. */
+.toast-success {
+  border-left-color: var(--success);
+}
+
+.toast-error {
+  border-left-color: var(--danger);
+}
+
+.toast-info {
+  border-left-color: var(--accent);
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .toast-stack {
+    right: 16px;
+    left: 16px;
+  }
+}

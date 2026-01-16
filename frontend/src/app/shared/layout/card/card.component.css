@@ -1,0 +1,10 @@
+/* Scopo: stile base per le card. */
+/* Sezioni: superficie, bordo, ombra. */
+/* Scelte UI/UX: ombre morbide per separare i livelli. */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+}

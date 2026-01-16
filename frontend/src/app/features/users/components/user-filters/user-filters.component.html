@@ -1,0 +1,44 @@
+<!-- Scopo: layout dei filtri per la lista utenti. -->
+<!-- Sezioni: ricerca, select di stato/ruolo/company, reset. -->
+<!-- Scelte UI/UX: filtri allineati per ridurre click. -->
+<div class="filters">
+  <!-- Ricerca testuale per email o parole chiave. -->
+  <ui-input
+    label="Cerca utenti"
+    placeholder="Email, ruolo o dominio"
+    type="search"
+    name="search"
+    [(ngModel)]="localFilters.search"
+    (ngModelChange)="emitFilters()"
+  ></ui-input>
+
+  <!-- Filtri a select per stato/ruolo/company. -->
+  <ui-select
+    label="Stato"
+    name="status"
+    [options]="statusOptions"
+    [(ngModel)]="localFilters.status"
+    (ngModelChange)="emitFilters()"
+  ></ui-select>
+
+  <ui-select
+    label="Ruolo"
+    name="role"
+    [options]="roleOptions"
+    [(ngModel)]="localFilters.role"
+    (ngModelChange)="emitFilters()"
+  ></ui-select>
+
+  <ui-select
+    label="Azienda"
+    name="company"
+    [options]="companyOptions"
+    [(ngModel)]="localFilters.company"
+    (ngModelChange)="emitFilters()"
+  ></ui-select>
+
+  <!-- CTA per ripulire rapidamente i filtri. -->
+  <div class="filters-actions">
+    <ui-button variant="ghost" size="sm" (click)="resetFilters()">Reset filtri</ui-button>
+  </div>
+</div>

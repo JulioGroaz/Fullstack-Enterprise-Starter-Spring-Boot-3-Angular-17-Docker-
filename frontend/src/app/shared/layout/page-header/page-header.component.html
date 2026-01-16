@@ -1,0 +1,24 @@
+<!-- Scopo: testata pagina con breadcrumb e azioni. -->
+<!-- Sezioni: breadcrumb, titolo/sottotitolo, slot azioni. -->
+<!-- Scelte UI/UX: gerarchia chiara tra titolo e azioni. -->
+<header class="page-header">
+  <div class="title-block">
+    <!-- Breadcrumb visibile solo se valorizzato. -->
+    <nav class="breadcrumbs" *ngIf="breadcrumbs.length">
+      <span *ngFor="let crumb of breadcrumbs; let last = last">
+        <a *ngIf="crumb.url && !last" [href]="crumb.url">{{ crumb.label }}</a>
+        <span *ngIf="!crumb.url || last">{{ crumb.label }}</span>
+        <span class="separator" *ngIf="!last">/</span>
+      </span>
+    </nav>
+
+    <!-- Titolo e sottotitolo della pagina. -->
+    <h1>{{ title }}</h1>
+    <p *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+
+  <!-- Slot per azioni contestuali. -->
+  <div class="actions">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</header>

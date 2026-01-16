@@ -1,0 +1,18 @@
+<!-- Scopo: elenco toast con live region. -->
+<!-- Sezioni: lista toast e pulsante di chiusura. -->
+<!-- Scelte UI/UX: messaggi brevi per non interrompere il flusso. -->
+<div class="toast-stack" aria-live="polite">
+  <article
+    class="toast"
+    *ngFor="let toast of toasts$ | async; trackBy: trackById"
+    [class.toast-success]="toast.tone === 'success'"
+    [class.toast-error]="toast.tone === 'error'"
+    [class.toast-info]="toast.tone === 'info'"
+  >
+    <div>
+      <strong>{{ toast.title }}</strong>
+      <p>{{ toast.message }}</p>
+    </div>
+    <button class="toast-close" type="button" (click)="dismiss(toast.id)">Chiudi</button>
+  </article>
+</div>

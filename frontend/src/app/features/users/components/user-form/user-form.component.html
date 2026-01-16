@@ -1,0 +1,75 @@
+<!-- Scopo: form utente con sezioni per anagrafica, accesso e note. -->
+<!-- Sezioni: griglia a due colonne e footer con CTA. -->
+<!-- Scelte UI/UX: sezioni separate per ridurre errori di compilazione. -->
+<form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <!-- Sezione anagrafica. -->
+  <div class="form-section">
+    <h4>Anagrafica</h4>
+    <div class="form-grid">
+      <ui-input
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="nome@azienda.it"
+        [(ngModel)]="formData.email"
+        [readonly]="readOnly"
+        [required]="true"
+        [error]="submitted && !formData.email ? 'Email obbligatoria' : ''"
+      ></ui-input>
+      <ui-input
+        label="Azienda"
+        name="company"
+        placeholder="Dominio email"
+        [(ngModel)]="formData.company"
+        [readonly]="true"
+        helper="Derivato dal dominio della mail"
+      ></ui-input>
+    </div>
+  </div>
+
+  <!-- Sezione ruolo e accesso. -->
+  <div class="form-section">
+    <h4>Ruolo e accesso</h4>
+    <div class="form-grid">
+      <ui-select
+        label="Ruolo"
+        name="role"
+        placeholder="Seleziona ruolo"
+        [options]="resolvedRoleOptions"
+        [(ngModel)]="formData.role"
+        [required]="true"
+        [disabled]="readOnly"
+        [error]="submitted && !formData.role ? 'Ruolo obbligatorio' : ''"
+      ></ui-select>
+      <div class="toggle-field">
+        <label class="toggle-label">Stato</label>
+        <ui-toggle
+          [checked]="formData.enabled"
+          [disabled]="readOnly"
+          ariaLabel="Toggle stato utente"
+          (changed)="onToggle($event)"
+        ></ui-toggle>
+        <span class="toggle-helper">{{ formData.enabled ? 'Attivo' : 'Disabilitato' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sezione note interne. -->
+  <div class="form-section">
+    <h4>Note interne</h4>
+    <ui-input
+      label="Note"
+      name="note"
+      placeholder="Aggiungi un contesto utile per il team"
+      [multiline]="true"
+      [rows]="4"
+      [(ngModel)]="formData.note"
+      [readonly]="readOnly"
+    ></ui-input>
+  </div>
+
+  <!-- CTA solo se non in sola lettura. -->
+  <div class="form-actions" *ngIf="!readOnly">
+    <ui-button type="submit" [disabled]="userForm.invalid">Salva</ui-button>
+  </div>
+</form>

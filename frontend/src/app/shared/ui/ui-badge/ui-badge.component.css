@@ -1,0 +1,53 @@
+/* Scopo: stile del badge con varianti di tono. */
+/* Sezioni: base, dimensioni, varianti cromatiche. */
+/* Scelte UI/UX: contrasto morbido per leggibilita immediata. */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 1px solid transparent;
+}
+
+/* Dimensioni del badge. */
+.ui-badge--sm {
+  font-size: 11px;
+}
+
+.ui-badge--md {
+  font-size: 12px;
+}
+
+/* Toni cromatici per stato/ruolo. */
+.ui-badge--neutral {
+  background: #f3f1ed;
+  color: var(--ink);
+  border-color: #e3ddd4;
+}
+
+.ui-badge--success {
+  background: #eaf7ef;
+  color: #1b7d3a;
+  border-color: #cdebd7;
+}
+
+.ui-badge--warning {
+  background: #fff4e6;
+  color: #b45309;
+  border-color: #fbd6a1;
+}
+
+.ui-badge--danger {
+  background: #fdecec;
+  color: #b42318;
+  border-color: #f5b7b1;
+}
+
+.ui-badge--info {
+  background: #e7f5ff;
+  color: #0b7285;
+  border-color: #b3e5fc;
+}

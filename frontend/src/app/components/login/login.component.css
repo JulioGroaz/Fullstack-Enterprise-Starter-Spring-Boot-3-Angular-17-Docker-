@@ -1,29 +1,32 @@
-/* English: Styles scoped to the login component. */
-/* Italiano: Stili specifici per il componente login. */
-.auth-card {
+/* Scopo: stile del layout login. */
+/* Sezioni: card centrale e header. */
+/* Scelte UI/UX: spaziatura ampia per respirare. */
+.login-card {
   max-width: 420px;
   margin: 60px auto;
   display: grid;
-  gap: 16px;
+  gap: var(--space-3);
 }
 
-/* English: Login card title spacing. */
-/* Italiano: Spaziatura titolo card login. */
-.auth-card h1 {
+/* Spaziatura del titolo. */
+.login-card h1 {
   margin: 0;
 }
 
-/* English: Field group layout. */
-/* Italiano: Layout gruppo campo. */
-.field {
+.login-header {
   display: grid;
-  gap: 6px;
+  gap: var(--space-1);
 }
 
-/* English: Mobile adjustments for the login layout. */
-/* Italiano: Adattamenti mobile per il layout login. */
+/* Spaziatura del form. */
+.login-card form {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* Adattamenti mobile. */
 @media (max-width: 720px) {
-  .auth-card {
+  .login-card {
     margin: 32px 16px;
   }
 }

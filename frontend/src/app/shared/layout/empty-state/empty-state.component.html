@@ -1,0 +1,11 @@
+<!-- Scopo: messaggio per liste vuote. -->
+<!-- Sezioni: testo e slot per azioni. -->
+<!-- Scelte UI/UX: testo centrato per ridurre frizione. -->
+<div class="empty-state">
+  <div class="empty-icon">◎</div>
+  <h3>{{ title }}</h3>
+  <p *ngIf="description">{{ description }}</p>
+  <div class="actions">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,16 +1,15 @@
-// English: Root component that hosts the router outlet.
-// Italiano: Componente root che ospita il router outlet.
+// Scopo: componente root con router outlet e toast globali.
+// Sezioni: import e template minimale.
+// Scelte UI/UX: toast sempre disponibili senza invadere le pagine.
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UiToastComponent } from './shared/ui/ui-toast/ui-toast.component';
 
-/**
- * English: Root shell of the Angular application.
- * Italiano: Shell root dell'applicazione Angular.
- */
+// Shell root dell'applicazione Angular.
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  template: '<router-outlet />'
+  imports: [RouterOutlet, UiToastComponent],
+  template: '<router-outlet /><ui-toast />'
 })
 export class AppComponent {}

@@ -1,15 +1,32 @@
-<!-- English: Profile card layout. -->
-<!-- Italiano: Layout card profilo. -->
-<div class="card">
-  <!-- English: Profile content or loading state. -->
-  <!-- Italiano: Contenuto profilo o stato di caricamento. -->
-  <h2>Your profile</h2>
+<!-- Scopo: card profilo con dati utente. -->
+<!-- Sezioni: contenuto profilo o stato di caricamento. -->
+<!-- Scelte UI/UX: badge per evidenziare ruoli e stato. -->
+<app-card class="profile-card">
+  <h2>Profilo</h2>
   <div *ngIf="user; else loading">
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
-    <p><strong>Status:</strong> {{ user.enabled ? 'Enabled' : 'Disabled' }}</p>
+    <div class="profile-row">
+      <span class="label">Email</span>
+      <span class="value">{{ user.email }}</span>
+    </div>
+    <div class="profile-row">
+      <span class="label">Ruoli</span>
+      <div class="badge-list">
+        <ui-badge
+          *ngFor="let role of user.roles"
+          [label]="roleLabel(role)"
+          [tone]="roleTone(role)"
+        ></ui-badge>
+      </div>
+    </div>
+    <div class="profile-row">
+      <span class="label">Stato</span>
+      <ui-badge
+        [label]="user.enabled ? 'Attivo' : 'Disabilitato'"
+        [tone]="statusTone()"
+      ></ui-badge>
+    </div>
   </div>
   <ng-template #loading>
-    <p class="helper">Loading profile...</p>
+    <p class="helper">Caricamento profilo...</p>
   </ng-template>
-</div>
+</app-card>

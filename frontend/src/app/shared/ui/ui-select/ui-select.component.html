@@ -1,0 +1,24 @@
+<!-- Scopo: select con label, helper ed errori. -->
+<!-- Sezioni: label, select e messaggi di supporto. -->
+<!-- Scelte UI/UX: placeholder per indicare la scelta attesa. -->
+<label class="ui-select" [class.has-error]="error">
+  <span class="label" *ngIf="label">{{ label }}</span>
+
+  <select
+    [id]="resolvedId"
+    [value]="value"
+    [disabled]="isDisabled"
+    [required]="required"
+    [attr.aria-label]="ariaLabel || label || null"
+    (change)="onSelect($any($event.target).value)"
+    (blur)="onBlur()"
+  >
+    <option value="" disabled>{{ placeholder }}</option>
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <span class="helper" *ngIf="helper && !error">{{ helper }}</span>
+  <span class="error" *ngIf="error">{{ error }}</span>
+</label>

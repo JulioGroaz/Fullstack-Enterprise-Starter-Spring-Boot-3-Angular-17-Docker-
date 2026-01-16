@@ -1,0 +1,58 @@
+<!-- Scopo: tabella utenti con azioni e stati. -->
+<!-- Sezioni: intestazione, righe utenti, skeleton loading. -->
+<!-- Scelte UI/UX: righe compatte per alta densita informativa. -->
+<div class="table-wrapper">
+  <table class="user-table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th scope="col">Utente</th>
+        <th scope="col">Ruoli</th>
+        <th scope="col">Stato</th>
+        <th scope="col">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of users; trackBy: trackById"
+        [class.is-disabled]="!user.enabled"
+      >
+        <td>
+          <div class="user-cell">
+            <span class="user-email">{{ user.email }}</span>
+            <span class="user-meta">ID #{{ user.id }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="role-badges">
+            <ui-badge
+              *ngFor="let role of user.roles"
+              [label]="roleLabel(role)"
+              [tone]="roleTone(role)"
+            ></ui-badge>
+          </div>
+        </td>
+        <td>
+          <ui-badge [label]="statusLabel(user)" [tone]="statusTone(user)"></ui-badge>
+        </td>
+        <td>
+          <div class="row-actions">
+            <!-- Azioni view/edit (UI pronta, logica nel parent). -->
+            <ui-button variant="ghost" size="sm" (click)="viewUser.emit(user)">Dettagli</ui-button>
+            <ui-button variant="secondary" size="sm" (click)="editUser.emit(user)">Modifica</ui-button>
+            <!-- Toggle con conferma gestita dal parent. -->
+            <ui-toggle
+              [checked]="user.enabled"
+              [ariaLabel]="user.enabled ? 'Disabilita utente' : 'Abilita utente'"
+              (changed)="requestToggle(user)"
+            ></ui-toggle>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Skeleton per caricamento. -->
+  <div class="skeleton" *ngIf="loading">
+    <div class="skeleton-row" *ngFor="let _ of [1, 2, 3, 4]"></div>
+  </div>
+</div>

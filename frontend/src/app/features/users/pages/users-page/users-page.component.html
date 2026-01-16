@@ -1,0 +1,90 @@
+<!-- Scopo: pagina gestione utenti con filtri, tabella e modali. -->
+<!-- Sezioni: header, filtri, tabella, stati e modali. -->
+<!-- Scelte UI/UX: card separate per isolare filtri e risultati. -->
+<section class="users-page">
+  <!-- Header pagina con azioni rapide. -->
+  <page-header title="Gestione utenti" subtitle="Controlla accessi, ruoli e stato degli utenti.">
+    <div actions>
+      <ui-button variant="secondary" (click)="loadUsers()">Aggiorna</ui-button>
+    </div>
+  </page-header>
+
+  <!-- Card filtri di ricerca. -->
+  <app-card>
+    <user-filters
+      [filters]="filters"
+      [roleOptions]="roleOptions"
+      [companyOptions]="companyOptions"
+      (filtersChange)="onFiltersChange($event)"
+    ></user-filters>
+  </app-card>
+
+  <!-- Card tabella utenti con stati. -->
+  <app-card class="table-card">
+    <div class="table-header">
+      <div>
+        <h3>Utenti</h3>
+        <p class="helper">{{ filteredUsers.length }} risultati</p>
+      </div>
+    </div>
+
+    <!-- Stato errore. -->
+    <empty-state
+      *ngIf="error"
+      title="Errore nel caricamento"
+      [description]="error"
+    >
+      <ui-button variant="secondary" (click)="loadUsers()">Riprova</ui-button>
+    </empty-state>
+
+    <!-- Tabella utenti con azioni. -->
+    <user-table
+      *ngIf="!error && (loading || filteredUsers.length)"
+      [users]="filteredUsers"
+      [loading]="loading"
+      (toggleStatus)="onToggleRequest($event)"
+      (viewUser)="openDetail($event, 'view')"
+      (editUser)="openDetail($event, 'edit')"
+    ></user-table>
+
+    <!-- Stato vuoto per filtri. -->
+    <empty-state
+      *ngIf="!loading && !error && !filteredUsers.length"
+      title="Nessun utente trovato"
+      description="Prova a modificare i filtri o la ricerca."
+    >
+      <ui-button variant="ghost" (click)="resetFilters()">
+        Reset filtri
+      </ui-button>
+    </empty-state>
+  </app-card>
+
+  <!-- Modale di conferma per abilita/disabilita. -->
+  <ui-modal
+    [open]="confirmOpen"
+    [title]="pendingToggle?.nextEnabled ? 'Abilita utente' : 'Disabilita utente'"
+    [description]="pendingToggle?.nextEnabled ? 'L\'utente riavra accesso al CRM.' : 'L\'utente non potra piu accedere al CRM.'"
+    [confirmLabel]="pendingToggle?.nextEnabled ? 'Abilita' : 'Disabilita'"
+    [confirmVariant]="pendingToggle?.nextEnabled ? 'primary' : 'danger'"
+    (confirm)="confirmToggle()"
+    (cancel)="cancelToggle()"
+  >
+    <p class="modal-text" *ngIf="pendingToggle?.user">
+      Confermi l'operazione per <strong>{{ pendingToggle?.user?.email }}</strong>?
+    </p>
+  </ui-modal>
+
+  <!-- Modale dettaglio utente (view/edit). -->
+  <ui-modal
+    [open]="detailOpen"
+    [title]="detailMode === 'edit' ? 'Modifica utente' : 'Dettaglio utente'"
+    [description]="detailMode === 'edit' ? 'Modifica disponibile in versione successiva.' : 'Informazioni principali e accessi.'"
+    confirmLabel="Chiudi"
+    confirmVariant="secondary"
+    [showCancel]="false"
+    (confirm)="closeDetail()"
+    (cancel)="closeDetail()"
+  >
+    <user-form [user]="selectedUser" [mode]="detailMode" [readOnly]="true"></user-form>
+  </ui-modal>
+</section>
