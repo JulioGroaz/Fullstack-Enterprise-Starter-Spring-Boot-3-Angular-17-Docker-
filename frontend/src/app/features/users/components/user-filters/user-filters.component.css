@@ -10,6 +10,7 @@
 
 .filters-actions {
   display: flex;
+  grid-column: 1 / 5;
   justify-content: flex-end;
 }
 
